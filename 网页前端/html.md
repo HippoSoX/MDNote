@@ -243,11 +243,11 @@ Remark提示: 在某些个别的情况下，比如属性值本身就含有双引
 + class 属性可以多用 class=" " （引号里面可以填入多个class属性）
 + id 属性只能单独设置 id=" "（只能填写一个，多个无效）
 
-## HTML 标题
+## HTML标题
 
 在 HTML 文档中，标题很重要。
 
-### HTML 标题
+### HTML标题
 
 标题（Heading）是通过 \<h1> - \<h6> 标签进行定义的。
 \<h1> 定义最大的标题。 \<h6> 定义最小的标题。
@@ -928,7 +928,7 @@ header 标签用于定义文档的页眉（介绍信息）。
 
 **注意千万不要弄混。**
 
-## HTML 样式- CSS
+## HTML样式- CSS
 
 CSS (Cascading Style Sheets) 用于渲染HTML元素标签的样式。
 
@@ -1855,7 +1855,6 @@ Last name: <input type="text" name="lastname">
 <form>
 Password: <input type="password" name="pwd">
 </form>
-
 **注意**:密码字段字符不会明文显示，而是以星号或圆点替代。
 
 ### 单选按钮（Radio Buttons）
@@ -2145,7 +2144,7 @@ iframe可以显示一个目标链接的页面
 |--|--|
 |\<iframe>|定义一个内联的ifram|
 
-## HTML 颜色
+## HTML颜色
 
 HTML 颜色由红色、绿色、蓝色混合而成。
 
@@ -2156,3 +2155,133 @@ HTML 颜色由一个十六进制符号来定义，这个符号由红色、绿色
 每种颜色的最小值是0（十六进制：#00）。最大值是255（十六进制：#FF）。
 
 这个表格给出了由三种颜色混合而成的具体效果：
+
+详情点下列链接看：
+
+[HTML颜色](https://www.runoob.com/html/html-colors.html)
+
+[HTML颜色名](https://www.runoob.com/html/html-colornames.html)
+
+[HTML颜色值](https://www.runoob.com/html/html-colorvalues.html)
+
+## HTML脚本
+
+JavaScript 使 HTML 页面具有更强的动态和交互性。
+
+### HTML\<script> 标签
+
+\<script> 标签用于定义客户端脚本，比如 JavaScript。
+
+\<script> 元素既可包含脚本语句，也可通过 src 属性指向外部脚本文件。
+
+JavaScript 最常用于图片操作、表单验证以及内容动态更新。
+
+### HTML\<noscript> 标签
+
+\<noscript> 标签提供无法使用脚本时的替代内容，比方在浏览器禁用脚本时，或浏览器不支持客户端脚本时。
+
+\<noscript>元素可包含普通 HTML 页面的 body 元素中能够找到的所有元素。
+
+只有在浏览器不支持脚本或者禁用脚本时，才会显示 \<noscript> 元素中的内容：
+
+### 示例一：将脚本插入HTML文档
+
+如何将脚本插入 HTML 文档。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+	</head>
+	<body>
+		<script>
+		document.write("Hello World!")
+		</script> 
+	</body>
+</html>
+```
+### 示例二：使用\<noscripts>
+
+如何应对不支持脚本或禁用脚本的浏览器。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+	</head> 
+	<body>
+		<script>
+		document.write("Hello World!")
+		</script>
+		<noscript>抱歉，你的浏览器不支持 JavaScript!</noscript>
+		<p>不支持 JavaScript 的浏览器会使用 &lt;noscript&gt; 元素中定义的内容（文本）来替代。</p>
+	</body>
+</html>
+```
+更多内容请看Javascript教程
+
+### HTML脚本标签
+
+|标签|描述|
+|--|--|
+|\<script>|定义了客户端脚本|
+|\<noscript>|定义了不支持脚本浏览器输出的文本|
+
+## HTMLURL
+
+URL 是一个网页地址。
+
+URL可以由字母组成，如"runoob.com"，或互联网协议（IP）地址： 192.68.20.50。大多数人进入网站使用网站域名来访问，因为 名字比数字更容易记住。
+
+### URL - 统一资源定位器
+
+Web浏览器通过URL从Web服务器请求页面。
+
+当您点击 HTML 页面中的某个链接时，对应的 \<a> 标签指向万维网上的一个地址。
+
+一个统一资源定位器(URL) 用于定位万维网上的文档。
+
+一个网页地址实例: http://www.runoob.com/html/html-tutorial.html 语法规则:
+
+**scheme://host.domain:port/path/filename**
+
+说明:
+
+- scheme - 定义因特网服务的类型。最常见的类型是 http
+- host - 定义域主机（http 的默认主机是 www）
+- domain - 定义因特网域名，比如 runoob.com
+- :port - 定义主机上的端口号（http 的默认端口号是 80）
+- path - 定义服务器上的路径（如果省略，则文档必须位于网站的根目录中）。
+- filename - 定义文档/资源的名称
+
+### 常见的 URL Scheme
+
+以下是一些URL scheme：
+
+|Scheme|访问|用于...|
+|--|--|--|
+|http|超文本传输协议|以 http:// 开头的普通网页。不加密。|
+|https|安全超文本传输协议|安全网页，加密所有信息交换。|
+|ftp|文件传输协议|用于将文件下载或上传至网站。|
+|file||您计算机上的文件。|
+
+### URL 字符编码
+
+URL 只能使用 ASCII 字符集.
+
+来通过因特网进行发送。由于 URL 常常会包含 ASCII 集合之外的字符，URL 必须转换为有效的 ASCII 格式。
+
+URL 编码使用 "%" 其后跟随两位的十六进制数来替换非 ASCII 字符。
+
+URL 不能包含空格。URL 编码通常使用 + 来替换空格。
+
+### HTML 速查列表
+
+HTML 速查列表. 你可以打印它，以备日常使用。
+
+https://www.runoob.com/html/html-quicklist.html
+
