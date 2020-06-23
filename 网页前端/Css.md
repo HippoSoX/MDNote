@@ -1767,7 +1767,421 @@ margin 可以单独改变元素的上，下，左，右边距，也可以一次�
 
 ![](VlwVi.png)
 
+### 可能的值
 
+|值|说明|
+|--|--|
+|auto|设置浏览器边距。这样做的结果会依赖于浏览器|
+|length|定义一个固定的margin（使用像素，pt，em等）|
+|%|定义一个使用百分比的边距|
 
+*Margin可以使用负值，重叠的内容。*
 
+### Margin - 单边外边距属性
 
+在CSS中，它可以指定不同的侧面不同的边距：
+
+```css
+margin-top:100px;
+margin-bottom:100px;
+margin-right:50px;
+margin-left:50px;
+```
+
+### Margin - 简写属性
+
+为了缩短代码，有可能使用一个属性中margin指定的所有边距属性。这就是所谓的简写属性。
+
+所有边距属性的简写属性是 `margin` :
+
+实例
+```css
+margin:100px 50px;
+```
+
+margin属性可以有一到四个值。
+
+- margin:25px 50px 75px 100px;
+	+ 上边距为25px
+	+ 右边距为50px
+	+ 下边距为75px
+	+ 左边距为100px
+
+- margin:25px 50px 75px;
+	+ 上边距为25px
+	+ 左右边距为50px
+	+ 下边距为75px
+
+- margin:25px 50px;
+	+ 上下边距为25px
+	+ 左右边距为50px
+
+- margin:25px;
+	+ 所有的4个边距都是25px
+
+### 所有的CSS边距属性
+
+|属性|描述|
+|--|--|
+|margin|简写属性。在一个声明中设置所有外边距属性。|
+|margin-bottom|设置元素的下外边距。|
+|margin-left|设置元素的左外边距。|
+|margin-right|设置元素的右外边距。|
+|margin-top|设置元素的上外边距。|
+
+### CSS padding（填充）
+
+CSS padding（填充）是一个简写属性，定义元素边框与元素内容之间的空间，即上下左右的内边距。
+
+### padding（填充）
+
+当元素的 padding（填充）内边距被清除时，所释放的区域将会受到元素背景颜色的填充。
+
+单独使用 padding 属性可以改变上下左右的填充。
+
+![](VlwVi1.png)
+
+### 可能的值
+
+|值|说明|
+|--|--|
+|length|定义一个固定的填充(像素, pt, em,等)|
+|%|使用百分比值定义一个填充|
+
+### 填充- 单边内边距属性
+
+在CSS中，它可以指定不同的侧面不同的填充：
+
+```css
+padding-top:25px;
+padding-bottom:25px;
+padding-right:50px;
+padding-left:50px;
+```
+
+- 上内边距是 25px
+- 右内边距是 50px
+- 下内边距是 25px
+- 左内边距是 50px
+
+### 填充 - 简写属性
+
+为了缩短代码，它可以在一个属性中指定的所有填充属性。
+
+这就是所谓的简写属性。所有的填充属性的简写属性是 padding :
+
+```css
+padding:25px 50px;
+```
+
+Padding属性，可以有一到四个值。
+
+- padding:25px 50px 75px 100px;
+	+ 上填充为25px
+	+ 右填充为50px
+	+ 下填充为75px
+	+ 左填充为100px
+  
+- padding:25px 50px 75px;
+	+ 上填充为25px
+	+ 左右填充为50px
+	+ 下填充为75px
+
+- padding:25px 50px;
+	+ 上下填充为25px
+	+ 左右填充为50px
+
+- padding:25px;
+	+ 所有的填充都是25px
+
+### 所有的CSS填充属性
+
+|属性|说明|
+|--|--|
+|padding|使用简写属性设置在一个声明中的所有填充属性|
+|padding-bottom|设置元素的底部填充|
+|padding-left|设置元素的左部填充|
+|padding-right|设置元素的右部填充|
+|padding-top|设置元素的顶部填充|
+
+## CSS 分组 和 嵌套 选择器
+
+### 分组选择器
+
+在样式表中有很多具有相同样式的元素。
+
+```css
+h1
+{
+    color:green;
+}
+h2
+{
+    color:green;
+}
+p
+{
+    color:green;
+}
+```
+
+为了尽量减少代码，你可以使用分组选择器。
+
+每个选择器用逗号分隔。
+
+在下面的例子中，我们对以上代码使用分组选择器：
+
+```css
+h1,h2,p
+{
+    color:green;
+}
+```
+
+### 嵌套选择器
+
+它可能适用于选择器内部的选择器的样式。
+
+在下面的例子设置了三个样式：
+
+- `p{ }`: 为所有 p 元素指定一个样式。
+- `.marked{ }`: 为所有 class="marked" 的元素指定一个样式。
+- `.marked p{ }`: 为所有 class="marked" 元素内的 p 元素指定一个样式。
+- `p.marked{ }`: 为所有 class="marked" 的 p 元素指定一个样式。
+ 
+```css
+p
+{
+    color:blue;
+    text-align:center;
+}
+.marked
+{
+    background-color:red;
+}
+.marked p
+{
+    color:white;
+}
+p.marked{
+    text-decoration:underline;
+}
+```
+
+### CSS 尺寸 (Dimension)
+
+CSS 尺寸 (Dimension) 属性允许你控制元素的高度和宽度。同样，它允许你增加行间距。
+
+### 所有CSS 尺寸 (Dimension)属性
+
+|属性|描述|
+|--|--|
+|height|设置元素的高度。|
+|line-height|设置行高。|
+|max-height|设置元素的最大高度。|
+|max-width|设置元素的最大宽度。|
+|min-height|设置元素的最小高度。|
+|min-width|设置元素的最小宽度。|
+|width|设置元素的宽度。|
+
+### CSS Display(显示) 与 Visibility（可见性）
+display属性设置一个元素应如何显示，visibility属性指定一个元素应可见还是隐藏。
+
+### 隐藏元素 - display:none或visibility:hidden
+
+隐藏一个元素可以通过把display属性设置为"none"，或把visibility属性设置为"hidden"。但是请注意，这两种方法会产生不同的结果。
+
+`visibility:hidden`可以隐藏某个元素，但隐藏的元素仍需占用与未隐藏之前一样的空间。也就是说，该元素虽然被隐藏了，但仍然会影响布局。
+
+`display:none`可以隐藏某个元素，且隐藏的元素不会占用任何空间。也就是说，该元素不但被隐藏了，而且该元素原本占用的空间也会从页面布局中消失。
+
+对于 CSS 里的 visibility 属性，通常其值被设置成 visible 或 hidden。
+
+visibility: hidden 相当于 display:none，能把元素隐藏起来，但两者的区别在于：
+
+1. display:none 元素不再占用空间。
+2. visibility: hidden 使元素在网页上不可见，但仍占用空间。
+然而，visibility 还可能取值为 collapse 。
+
+当设置元素 visibility: collapse 后，一般的元素的表现与 visibility: hidden 一样，也即其会占用空间。但如果该元素是与 table 相关的元素，例如 table row、table column、table column group、table column group 等，其表现却跟 display: none 一样，也即其占用的空间会释放。
+
+在不同浏览器下，对 visibility: collapse 的处理方式不同：
+
+1. visibility: collapse 的上述特性仅在 Firefox 下起作用。
+2. 在 IE 即使设置了 visibility: collapse，还是会显示元素。
+3. 在 Chrome 下，即使会将元素隐藏，但无论是否是与 table 相关的元素，visibility: collapse 与 visibility: hidden 没有什么区别，即仍会占用空间。
+
+### CSS Display - 块和内联元素
+
+块元素是一个元素，占用了全部宽度，在前后都是换行符。
+
+块元素的例子：
+- \<h1>
+- \<p>
+- \<div>
+
+内联元素只需要必要的宽度，不强制换行。
+
+内联元素的例子：
+- \<span>
+- \<a>
+
+### 如何改变一个元素显示
+
+可以更改内联元素和块元素，反之亦然，可以使页面看起来是以一种特定的方式组合，并仍然遵循web标准。
+
+下面的示例把列表项显示为内联元素：
+```css
+li {display:inline;}
+```
+
+下面的示例把span元素作为块元素：
+```css
+span {display:block;}
+```
+
+**注意**：变更元素的显示类型看该元素是如何显示，它是什么样的元素。例如：一个内联元素设置为display:block是不允许有它内部的嵌套块元素。
+
+### 块级元素(block)特性：
+
+- 总是独占一行，表现为另起一行开始，而且其后的元素也必须另起一行显示;
+
+- 宽度(width)、高度(height)、内边距(padding)和外边距(margin)都可控制;
+
+### 内联元素(inline)特性：
+
+- 和相邻的内联元素在同一行;
+
+- 宽度(width)、高度(height)、内边距的top/bottom(padding-top/padding-bottom)和外边距的top/bottom(margin-top/margin-bottom)都不可改变，就是里面文字或图片的大小;
+
+### 块级元素主要有：
+
+- address , blockquote , center , dir , div , dl , fieldset , form , h1 , h2 , h3 , h4 , h5 , h6 , hr , isindex , menu , noframes , noscript , ol , p , pre , table , ul , li
+
+### 内联元素主要有：
+
+- a , abbr , acronym , b , bdo , big , br , cite , code , dfn , em , font , i , img , input , kbd , label , q , s , samp , select , small , span , strike , strong , sub , sup ,textarea , tt , u , var
+
+### 可变元素(根据上下文关系确定该元素是块元素还是内联元素)：
+
+- applet ,button ,del ,iframe , ins ,map ,object , script
+
+### CSS中块级、内联元素的应用：
+
+利用CSS我们可以摆脱上面表格里HTML标签归类的限制，自由地在不同标签/元素上应用我们需要的属性。
+
+主要用的CSS样式有以下三个：
+
+- display:block  -- 显示为块级元素
+- display:inline  -- 显示为内联元素
+- display:inline-block -- 显示为内联块元素，表现为同行显示并可修改宽高内外边距等属性
+
+我们常将所有\<li>元素加上display:inline-block样式，原本垂直的列表就可以水平显示了。
+
+## CSS Position(定位)
+
+position 属性指定了元素的定位类型。
+
+position 属性的五个值：
+
+- static
+- relative
+- fixed
+- absolute
+- sticky
+
+元素可以使用的顶部，底部，左侧和右侧属性定位。然而，这些属性无法工作，除非是先设定position属性。他们也有不同的工作方式，这取决于定位方法。
+
+### static 定位
+
+HTML 元素的默认值，即没有定位，遵循正常的文档流对象。
+
+静态定位的元素不会受到 top, bottom, left, right影响。
+
+```css
+div.static {
+    position: static;
+    border: 3px solid #73AD21;
+}
+```
+
+### fixed 定位
+
+元素的位置相对于浏览器窗口是固定位置。
+
+即使窗口是滚动的它也不会移动：
+
+```css
+p.pos_fixed
+{
+    position:fixed;
+    top:30px;
+    right:5px;
+}
+```
+
+*注意： Fixed 定位在 IE7 和 IE8 下需要描述 !DOCTYPE 才能支持。
+Fixed定位使元素的位置与文档流无关，因此不占据空间。
+Fixed定位的元素和其他元素重叠。*
+
+### relative 定位
+
+相对定位元素的定位是相对其正常位置。
+
+```css
+h2.pos_left
+{
+    position:relative;
+    left:-20px;
+}
+h2.pos_right
+{
+    position:relative;
+    left:20px;
+}
+```
+
+移动相对定位元素，但它原本所占的空间不会改变。
+
+```css
+h2.pos_top
+{
+    position:relative;
+    top:-50px;
+}
+```
+
+相对定位元素经常被用来作为绝对定位元素的容器块。
+
+### absolute 定位
+
+绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于\<html>:
+
+```css
+h2
+{
+    position:absolute;
+    left:100px;
+    top:150px;
+}
+```
+
+absolute 定位使元素的位置与文档流无关，因此不占据空间。
+
+absolute 定位的元素和其他元素重叠。
+
+### sticky 定位
+
+sticky 英文字面意思是粘，粘贴，所以可以把它称之为粘性定位。
+
+`position: sticky`; 基于用户的滚动位置来定位。
+
+粘性定位的元素是依赖于用户的滚动，在`position:relative`与`position:fixed`定位之间切换。
+
+它的行为就像`position:relative`;而当页面滚动超出目标区域时，它的表现就像`position:fixed`，它会固定在目标位置。
+
+元素定位表现为在跨越特定阈值前为相对定位，之后为固定定位。
+
+这个特定阈值指的是 top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
+
+注意: Internet Explorer, Edge 15 及更早 IE 版本不支持 sticky 定位。 Safari 需要使用 -webkit- prefix (查看以下实例)。
