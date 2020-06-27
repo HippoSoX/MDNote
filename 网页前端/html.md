@@ -2623,3 +2623,428 @@ HTML5提供了新的元素来创建更好的页面结构：
 - \<strike>
 - \<tt>
 
+## HTML5 Canvas
+
+\<canvas> 标签定义图形，比如图表和其他图像，您必须使用脚本来绘制图形。
+
+在画布上（Canvas）画一个红色矩形，渐变矩形，彩色矩形，和一些彩色的文字。
+
+### 什么是 canvas?
+
+HTML5 \<canvas> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.
+
+\<canvas> 标签只是图形容器，您必须使用脚本来绘制图形。
+
+你可以通过多种方法使用 canvas 绘制路径,盒、圆、字符以及添加图像。
+
+### 创建一个画布（Canvas）
+
+一个画布在网页中是一个矩形框，通过 \<canvas> 元素来绘制.
+
+注意: 默认情况下 \<canvas> 元素没有边框和内容。
+
+\<canvas>简单实例如下:
+
+```html
+<canvas id="myCanvas" width="200" height="100"></canvas>
+```
+
+注意: 标签通常需要指定一个id属性 (脚本中经常引用), width 和 height 属性定义的画布的大小.
+
+提示:你可以在HTML页面中使用多个\<canvas> 元素.
+
+使用 style 属性来添加边框:
+
+```html
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #000000;">
+</canvas>
+```
+
+### 使用 JavaScript 来绘制图像
+
+canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_first)
+
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.fillStyle="#FF0000";
+ctx.fillRect(0,0,150,75);
+```
+
+#### 实例解析:
+
+首先，找到 \<canvas> 元素:
+
+```js
+var c=document.getElementById("myCanvas");
+```
+
+然后，创建 context 对象：
+
+```js
+var ctx=c.getContext("2d");
+```
+
+getContext("2d") 对象是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。
+
+下面的两行代码绘制一个红色的矩形：
+
+```js
+ctx.fillStyle="#FF0000";
+ctx.fillRect(0,0,150,75);
+```
+
+设置fillStyle属性可以是CSS颜色，渐变，或图案。fillStyle 默认设置是`#000000`（黑色）。
+
+`fillRect(x,y,width,height)`方法定义了矩形当前的填充方式。
+
+### Canvas 坐标
+
+canvas 是一个二维网格。
+
+canvas 的左上角坐标为 (0,0)
+
+上面的 fillRect 方法拥有参数 (0,0,150,75)。
+
+意思是：在画布上绘制 150x75 的矩形，从左上角开始 (0,0)。
+
+**坐标实例**
+[示例](https://www.runoob.com/html/html5-canvas.html)
+
+如下图所示，画布的 X 和 Y 坐标用于在画布上对绘画进行定位。鼠标移动的矩形框上，显示定位坐标。
+
+### Canvas - 路径
+
+在Canvas上画线，我们将使用以下两种方法：
+
+- `moveTo(x,y)` 定义线条开始坐标
+- `lineTo(x,y)` 定义线条结束坐标
+
+绘制线条我们必须使用到 "ink" 的方法，就像stroke().
+
+[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_path)
+
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+```
+
+在canvas中绘制圆形, 我们将使用以下方法:
+```js
+arc(x,y,r,start,stop)
+```
+
+画布的左上角坐标为0,0
+
+- x：圆心在x轴上的坐标
+- y：圆心在y轴上的坐标
+- r：半径长度
+- start：起始角度，以弧度表示，圆心平行的右端为0度
+- stop：结束角度，以弧度表示
+*注意：Math.PI表示180°，画圆的方向是顺时针*
+
+实际上我们在绘制圆形时使用了 "ink" 的方法, 比如 stroke() 或者 fill().
+[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_path2)
+
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+```
+
+### Canvas - 文本
+
+使用 canvas 绘制文本，重要的属性和方法如下：
+
+- font - 定义字体
+- fillText(text,x,y) - 在 canvas 上绘制实心的文本
+- strokeText(text,x,y) - 在 canvas 上绘制空心的文本
+
+使用 fillText():[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_text)
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.font="30px Arial";
+ctx.fillText("Hello World",10,50);
+```
+
+使用 strokeText():[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_text2)
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.font="30px Arial";
+ctx.strokeText("Hello World",10,50);
+```
+
+### Canvas - 渐变
+
+渐变可以填充在矩形, 圆形, 线条, 文本等等, 各种形状可以自己定义不同的颜色。
+
+以下有两种不同的方式来设置Canvas渐变：
+
+- createLinearGradient(x,y,x1,y1) - 创建线条渐变
+- createRadialGradient(x,y,r,x1,y1,r1) - 创建一个径向/圆渐变
+
+当我们使用渐变对象，必须使用两种或两种以上的停止颜色。
+
+addColorStop()方法指定颜色停止，参数使用坐标来描述，可以是0至1.
+
+创建渐变时 context.addColorStop(stop, color) 括号内参数含义如下：
+
+- stop: 介于0.0与1.0之间的值，表示渐变中开始于结束之间的位置
+- color: 在stop位置显示的CSS颜色值
+
+在绘制渐变时，可以通过多个 addColorStop() 方法来定义渐变；否则渐变将不可见。
+
+使用渐变，设置fillStyle或strokeStyle的值为 渐变，然后绘制形状，如矩形，文本，或一条线。
+
+使用 createLinearGradient():[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_grad)
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ 
+// 创建渐变
+var grd=ctx.createLinearGradient(0,0,200,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+ 
+// 填充渐变
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80);
+```
+
+创建线性渐变时 context.createLinearGradient(x,y,x1,y1) 括号内的参数含义如下：
+
+- x: 起始位置的x坐标
+- y: 起始位置的y坐标
+- x1: 渐变终点位置的x坐标
+- y1: 渐变终点位置的y坐标
+
+使用 createRadialGradient():[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_grad2)
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ 
+// 创建渐变
+var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+ 
+// 填充渐变
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80);
+```
+
+制作径向渐变时 context.createRadialGradient(x , y , r , x1 , y1 , r1) 括号内参数含义如下:
+
+- x: 渐变的开始圆的 x 坐标
+- y: 渐变的开始圆的 y 坐标
+- r: 开始圆的半径
+- x1: 渐变的结束圆的 x 坐标
+- y1: 渐变的结束圆的 y 坐标
+- r1: 结束圆的半径
+
+(x, y, r) (x1,y1,r1)分别可以代表一个圆形的特征, 个人感觉通常情况下(x,y) 和 (x1,y1)简单地相同即可(即同心圆), 这样做出来的径向渐变已经十分美观,符合大众审美观。
+
+### Canvas - 图像
+
+把一幅图像放置到画布上, 使用以下方法:
+```js
+drawImage(image,x,y)
+```
+
+[示例](https://www.runoob.com/try/try.php?filename=tryhtml5_canvas_tut_img)
+```js
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+var img=document.getElementById("scream");
+ctx.drawImage(img,10,10);
+```
+
+### HTML \<canvas> 标签
+
+|Tag|描述|
+|--|--|
+|\<canvas>|HTML5 的 canvas 元素使用 JavaScript 在网页上绘制图像。|
+
+## HTML5 内联 SVG
+
+HTML5 支持内联 SVG。
+
+### 什么是SVG？
+
+- SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+- SVG 用于定义用于网络的基于矢量的图形
+- SVG 使用 XML 格式定义图形
+- SVG 图像在放大或改变尺寸的情况下其图形质量不会有损失
+- SVG 是万维网联盟的标准
+
+### SVG优势
+
+与其他图像格式相比（比如 JPEG 和 GIF），使用 SVG 的优势在于：
+
+- SVG 图像可通过文本编辑器来创建和修改
+- SVG 图像可被搜索、索引、脚本化或压缩
+- SVG 是可伸缩的
+- SVG 图像可在任何的分辨率下被高质量地打印
+- SVG 可在图像质量不下降的情况下被放大
+
+### 把 SVG 直接嵌入 HTML 页面
+
+在 HTML5 中，您能够将 SVG 元素直接嵌入 HTML 页面中：
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
+        <polygon points="100,10 40,180 190,60 10,60 160,180"
+        style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;">
+        </svg>
+    </body>
+</html>
+```
+
+### SVG 与 Canvas两者间的区别
+
+SVG 是一种使用 XML 描述 2D 图形的语言。
+
+Canvas 通过 JavaScript 来绘制 2D 图形。
+
+SVG 基于 XML，这意味着 SVG DOM 中的每个元素都是可用的。您可以为某个元素附加 JavaScript 事件处理器。
+
+在 SVG 中，每个被绘制的图形均被视为对象。如果 SVG 对象的属性发生变化，那么浏览器能够自动重现图形。
+
+Canvas 是逐像素进行渲染的。在 canvas 中，一旦图形被绘制完成，它就不会继续得到浏览器的关注。如果其位置发生变化，那么整个场景也需要重新绘制，包括任何或许已被图形覆盖的对象。
+
+
+Canvas 与 SVG 的比较
+下表列出了 canvas 与 SVG 之间的一些不同之处。
+
+|Canvas|SVG|
+|--|--|
+|- 依赖分辨率<br>- 不支持事件处理器<br>- 弱的文本渲染能力<br>- 能够以 .png 或 .jpg 格式保存结果图像<br>- 最适合图像密集型的游戏，其中的许多对象会被频繁重绘|- 不依赖分辨率<br>- 支持事件处理器<br>- 最适合带有大型渲染区域的应用程序（比如谷歌地图）<br>- 复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）<br>- 不适合游戏应用|
+
+## HTML5 MathML
+
+HTML5 可以在文档中使用 MathML 元素，对应的标签是 \<math>...\</math> 。
+
+MathML 是数学标记语言，是一种基于XML（标准通用标记语言的子集）的标准，用来在互联网上书写数学符号和公式的置标语言。
+
+*注意：大部分浏览器都支持 MathML 标签，如果你的浏览器不支持该标签，可以使用最新版的 Firefox 或 Safari 浏览器查看。*
+
+### MathML 实例
+
+以下是一个简单的 MathML 实例：
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>菜鸟教程(runoob.com)</title>
+   </head>
+   <body>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+         <mrow>
+            <msup><mi>a</mi><mn>2</mn></msup>
+            <mo>+</mo>
+            <msup><mi>b</mi><mn>2</mn></msup>
+            <mo>=</mo>
+            <msup><mi>c</mi><mn>2</mn></msup>
+         </mrow>
+      </math>
+   </body>
+</html> 
+```
+
+更多示例请直接前往[官网](https://www.runoob.com/html/html5-mathml.html)查看
+
+## HTML5 拖放（Drag 和 Drop）
+
+拖放（Drag 和 drop）是 HTML5 标准的组成部分。
+
+### 拖放
+
+拖放是一种常见的特性，即抓取对象以后拖到另一个位置。
+
+在 HTML5 中，拖放是标准的一部分，任何元素都能够拖放。
+
+### HTML5 拖放实例
+
+下面的例子是一个简单的拖放实例：
+```html
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title>菜鸟教程(runoob.com)</title>
+        <style type="text/css">
+            #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+        </style>
+        <script>
+            function allowDrop(ev)
+            {
+                ev.preventDefault();
+            }
+            function drag(ev)
+            {
+                ev.dataTransfer.setData("Text",ev.target.id);
+            }
+            function drop(ev)
+            {
+                ev.preventDefault();
+                var data=ev.dataTransfer.getData("Text");
+                ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+    </head>
+    <body>
+        <p>拖动 RUNOOB.COM 图片到矩形框中:</p>
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <br>
+        <img id="drag1" src="/images/logo.png" draggable="true" ondragstart="drag(event)" width="336" height="69">
+    </body>
+</html>
+```
+
+**它看上去也许有些复杂，不过我们可以分别研究拖放事件的不同部分。**
+
+### 设置元素为可拖放
+
+首先，为了使元素可拖动，把 draggable 属性设置为 true ：
+```html
+<img draggable="true">
+```
+
+### 拖动什么 - ondragstart 和 setData()
+
+然后，规定当元素被拖动时，会发生什么。
+
+在上面的例子中，ondragstart 属性调用了一个函数，`drag(event)`，它规定了被拖动的数据。
+
+dataTransfer.setData() 方法设置被拖数据的数据类型和值：
+```js
+function drag(ev)
+{
+    ev.dataTransfer.setData("Text",ev.target.id);
+}
+```
+
+Text 是一个 DOMString 表示要添加到 drag object 的拖动数据的类型。值是可拖动元素的 `id ("drag1")`。
+
+### 放到何处 - ondragover
+
+ondragover 事件规定在何处放置被拖动的数据。
+
+默认地，无法将数据/元素放置到其他元素中。如果需要设置允许放置，我们必须阻止对元素的默认处理方式。
+
+这要通过调用 ondragover 事件的 event.preventDefault() 方法：
+```js
+event.preventDefault()
+```
