@@ -1829,7 +1829,7 @@ margin属性可以有一到四个值。
 |margin-right|设置元素的右外边距。|
 |margin-top|设置元素的上外边距。|
 
-### CSS padding（填充）
+## CSS padding（填充）
 
 CSS padding（填充）是一个简写属性，定义元素边框与元素内容之间的空间，即上下左右的内边距。
 
@@ -1948,7 +1948,7 @@ h1,h2,p
 - `.marked{ }`: 为所有 class="marked" 的元素指定一个样式。
 - `.marked p{ }`: 为所有 class="marked" 元素内的 p 元素指定一个样式。
 - `p.marked{ }`: 为所有 class="marked" 的 p 元素指定一个样式。
- 
+
 ```css
 p
 {
@@ -1968,7 +1968,7 @@ p.marked{
 }
 ```
 
-### CSS 尺寸 (Dimension)
+## CSS 尺寸 (Dimension)
 
 CSS 尺寸 (Dimension) 属性允许你控制元素的高度和宽度。同样，它允许你增加行间距。
 
@@ -1984,7 +1984,8 @@ CSS 尺寸 (Dimension) 属性允许你控制元素的高度和宽度。同样，
 |min-width|设置元素的最小宽度。|
 |width|设置元素的宽度。|
 
-### CSS Display(显示) 与 Visibility（可见性）
+## CSS Display(显示) 与 Visibility（可见性）
+
 display属性设置一个元素应如何显示，visibility属性指定一个元素应可见还是隐藏。
 
 ### 隐藏元素 - display:none或visibility:hidden
@@ -2098,6 +2099,8 @@ HTML 元素的默认值，即没有定位，遵循正常的文档流对象。
 
 静态定位的元素不会受到 top, bottom, left, right影响。
 
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_static)
+
 ```css
 div.static {
     position: static;
@@ -2110,6 +2113,8 @@ div.static {
 元素的位置相对于浏览器窗口是固定位置。
 
 即使窗口是滚动的它也不会移动：
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_fixed)
 
 ```css
 p.pos_fixed
@@ -2128,6 +2133,10 @@ Fixed定位的元素和其他元素重叠。*
 
 相对定位元素的定位是相对其正常位置。
 
+**relative**：定位是相对于自身位置定位（设置偏移量的时候，会相对于自身所在的位置偏移）。设置了 relative 的元素仍然处在文档流中，元素的宽高不变，设置偏移量也不会影响其他元素的位置。最外层容器设置为 relative 定位，在没有设置宽度的情况下，宽度是整个浏览器的宽度。
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_relative)
+
 ```css
 h2.pos_left
 {
@@ -2143,6 +2152,8 @@ h2.pos_right
 
 移动相对定位元素，但它原本所占的空间不会改变。
 
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_relative2)
+
 ```css
 h2.pos_top
 {
@@ -2156,6 +2167,10 @@ h2.pos_top
 ### absolute 定位
 
 绝对定位的元素的位置相对于最近的已定位父元素，如果元素没有已定位的父元素，那么它的位置相对于\<html>:
+
+**absolute**：定位是相对于离元素最近的设置了绝对或相对定位的父元素决定的，如果没有父元素设置绝对或相对定位，则元素相对于根元素即 html 元素定位。设置了 absolute 的元素脱了了文档流，元素在没有设置宽度的情况下，宽度由元素里面的内容决定。脱离后原来的位置相当于是空的，下面的元素会来占据位置。
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_absolute)
 
 ```css
 h2
@@ -2185,3 +2200,402 @@ sticky 英文字面意思是粘，粘贴，所以可以把它称之为粘性定�
 这个特定阈值指的是 top, right, bottom 或 left 之一，换言之，指定 top, right, bottom 或 left 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。
 
 注意: Internet Explorer, Edge 15 及更早 IE 版本不支持 sticky 定位。 Safari 需要使用 -webkit- prefix (查看以下实例)。
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_position_sticky)
+
+```css
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    background-color: green;
+    border: 2px solid #4CAF50;
+}
+```
+
+### 重叠的元素
+
+元素的定位与文档流无关，所以它们可以覆盖页面上的其它元素
+
+z-index属性指定了一个元素的堆叠顺序（哪个元素应该放在前面，或后面）
+
+**层级问题（谁高）**
+
+**总结：**标准流盒子，低于浮动的盒子，浮动的盒子又低于定位的盒子。
+
+定位高于浮动，浮动高于标准流。（高低和占不占位置无关）
+
+用法：
+
+1、必须有定位。（除去static之外）。
+
+2、给定 z-index 的值为层级的值。（不给默认为0）
+
+- a. 层级为0的盒子，也比标准流和浮动高。
+- b. 层级为负数的盒子，比标准流和浮动低。
+- c. 层级不取小数）
+- d. 层级一样，后面的盒子比前面的层级高。
+- e. 浮动或者标准流的盒子，后面的盒子比前面的层级高。
+- f. abselute是不占位置的，relative是站位的的。而层级的高低，是和占不占位置没有关系的。
+
+一个元素可以有正数或负数的堆叠顺序：
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_zindex)
+
+```css
+img
+{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-1;
+}
+```
+
+具有更高堆叠顺序的元素总是在较低的堆叠顺序元素的前面。
+
+**注意**： 如果两个定位元素重叠，没有指定z - index，最后定位在HTML代码中的元素将被显示在最前面。
+
+### 示例一：[裁剪元素的外形](https://www.runoob.com/try/try.php?filename=trycss_clip)
+
+此示例演示如何设置元素的外形。该元素被剪裁成这种形状，并显示出来。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+		<style>
+			img 
+			{
+				position:absolute;
+				clip:rect(0px,60px,200px,0px);
+			}
+		</style>
+	</head>
+	<body>
+		<img src="w3css.gif" width="100" height="140" />
+	</body>
+</html>
+```
+
+### 示例二：[如何使用滚动条来显示元素内溢出的内容](https://www.runoob.com/try/try.php?filename=trycss_overflow)
+
+这个例子演示了overflow属性创建一个滚动条，当一个元素的内容在指定的区域过大时如何设置以适应。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+		<style>
+			div.ex1 {
+			    background-color: lightblue;
+			    width: 110px;
+			    height: 110px;
+			    overflow: scroll;
+			}
+			div.ex2 {
+			    background-color: lightblue;
+ 				width: 110px;
+ 				height: 110px;
+			    overflow: hidden;
+			}
+			div.ex3 {
+    			background-color: lightblue;
+			    width: 110px;
+			    height: 110px;
+			    overflow: auto;
+			}
+			div.ex4 {
+			    background-color: lightblue;
+			    width: 110px;
+			    height: 110px;
+			    overflow: visible;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>overflow 属性</h1>
+		<p>如果元素中的内容超出了给定的宽度和高度属性，overflow 属性可以确定是否显示滚动条等行为。</p>
+		<h2>overflow: scroll:</h2>
+		<div class="ex1">菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！</div>
+		<h2>overflow: hidden:</h2>
+		<div class="ex2">菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！</div>
+		<h2>overflow: auto:</h2>
+		<div class="ex3">菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！</div>
+		<h2>overflow: visible (默认):</h2>
+		<div class="ex4">菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！菜鸟教程 -- 学的不仅是技术，更是梦想！！！</div>
+	</body>
+</html>
+```
+
+### 示例三：[如何设置浏览器自动溢出处理](https://www.runoob.com/try/try.php?filename=trycss_pos_overflow_auto)
+
+这个例子演示了如何设置浏览器来自动处理溢出。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+		<style>
+			div 
+			{
+				background-color:#00FFFF;
+				width:150px;
+				height:150px;
+				overflow:auto;
+			}
+		</style>
+	</head>
+	<body>
+		<p>overflow 属性规定当内容溢出元素框时发生的事情。</p>
+		<div>
+			当你想更好的控制布局时你可以使用 overflow 属性。尝试修改 overflow 属性为: visible, hidden, scroll, 或 inherit 并查看效果。 默认值为 visible。
+		</div>
+	</body>
+</html>
+```
+
+### 示例四：[更改光标](https://www.runoob.com/try/try.php?filename=trycss_cursor)
+
+这个例子演示了如何改变光标。
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>菜鸟教程(runoob.com)</title> 
+	</head>
+	<body>
+		<p>请把鼠标移动到单词上，可以看到鼠标指针发生变化：</p>
+		<span style="cursor:auto">auto</span><br>
+		<span style="cursor:crosshair">crosshair</span><br>
+		<span style="cursor:default">default</span><br>
+		<span style="cursor:e-resize">e-resize</span><br>
+		<span style="cursor:help">help</span><br>
+		<span style="cursor:move">move</span><br>
+		<span style="cursor:n-resize">n-resize</span><br>
+		<span style="cursor:ne-resize">ne-resize</span><br>
+		<span style="cursor:nw-resize">nw-resize</span><br>
+		<span style="cursor:pointer">pointer</span><br>
+		<span style="cursor:progress">progress</span><br>
+		<span style="cursor:s-resize">s-resize</span><br>
+		<span style="cursor:se-resize">se-resize</span><br>
+		<span style="cursor:sw-resize">sw-resize</span><br>
+		<span style="cursor:text">text</span><br>
+		<span style="cursor:w-resize">w-resize</span><br>
+		<span style="cursor:wait">wait</span><br>
+	</body>
+</html>
+```
+
+### 所有的CSS定位属性
+
+"CSS" 列中的数字表示哪个CSS(CSS1 或者CSS2)版本定义了该属性。
+
+|属性|说明|值|CSS|
+|:--|:--|:--|:--|
+|[bottom](https://www.runoob.com/cssref/pr-pos-bottom.html)|定义了定位元素下外边距边界与其包含块下边界之间的偏移。|auto<br/>*length*<br/>%<br/>*inherit*|2|
+|[clip](https://www.runoob.com/cssref/pr-pos-clip.html)|剪辑一个绝对定位的元素|*shape*<br/>*auto*<br/>inherit|2|
+|[cursor](https://www.runoob.com/cssref/pr-class-cursor.html)|显示光标移动到指定的类型|*url*<br/>auto<br/>crosshair<br/>default<br/>pointer<br/>move<br/>e-resize<br/>ne-resize<br/>nw-resize<br/>n-resize<br/>se-resize<br/>sw-resize<br/>s-resize<br/>w-resize<br/>text<br/>wait <br/>help|2|
+|[left](https://www.runoob.com/cssref/pr-pos-left.html)|定义了定位元素左外边距边界与其包含块左边界之间的偏移。|auto<br/>*length*<br/>%<br/>*inherit*|2|
+|[overflow](https://www.runoob.com/cssref/pr-pos-overflow.html)|设置当元素的内容溢出其区域时发生的事情。|auto<br/>hidden<br/>scroll<br/>visible<br/>inherit|2|
+|[overflow-y](https://www.runoob.com/css/cssref/css3-pr-overflow-y.html)|指定如何处理顶部/底部边缘的内容溢出元素的内容区域|auto<br/>hidden<br/>scroll<br/>visible<br/>no-display<br/>no-content|2|
+|[overflow-x](https://www.runoob.com/css/cssref//cssref/css3-pr-overflow-x.html)|指定如何处理右边/左边边缘的内容溢出元素的内容区域|auto<br/>hidden<br/>scroll<br/>visible<br/>no-display<br/>no-content|2|
+|[position](https://www.runoob.com/cssref/pr-class-position.html)|指定元素的定位类型|absolute<br/>fixed<br/>relative<br/>static<br/>inherit|2|
+|[right](https://www.runoob.com/cssref/pr-pos-right.html)|定义了定位元素右外边距边界与其包含块右边界之间的偏移。|auto<br/>*length*<br/>%<br/>*inherit*|2|
+|[top](https://www.runoob.com/cssref/pr-pos-top.html)|定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移。|auto<br/>*length*<br/>%<br/>*inherit*|2|
+|[z-index](https://www.runoob.com/cssref/pr-pos-z-index.html)|设置元素的堆叠顺序|*number*<br/>*auto*<br/>inherit|2|
+
+## CSS 布局 - Overflow
+
+CSS overflow 属性用于控制内容溢出元素框时显示的方式。
+
+### CSS Overflow
+
+CSS overflow 属性可以控制内容溢出元素框时在对应的元素区间内添加滚动条。
+
+overflow属性有以下值：
+
+|值|描述|
+|:--|:--|
+|visible|默认值。内容不会被修剪，会呈现在元素框之外。|
+|hidden|内容会被修剪，并且其余内容是不可见的。|
+|scroll|内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。|
+|auto|如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。|
+|inherit|规定应该从父元素继承 overflow 属性的值。|
+
+## CSS Float(浮动)
+
+### 什么是 CSS Float（浮动）？
+
+CSS 的 Float（浮动），会使元素向左或向右移动，其周围的元素也会重新排列。
+
+Float（浮动），往往是用于图像，但它在布局时一样非常有用。
+
+### 元素怎样浮动
+
+元素的水平方向浮动，意味着元素只能左右移动而不能上下移动。
+
+一个浮动元素会尽量向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。
+
+浮动元素之后的元素将围绕它。
+
+浮动元素之前的元素将不会受到影响。
+
+如果图像是右浮动，下面的文本流将环绕在它左边：[示例](https://www.runoob.com/try/try.php?filename=trycss_float)
+
+```css
+img
+{
+    float:right;
+}
+```
+
+### 彼此相邻的浮动元素
+
+如果你把几个浮动的元素放到一起，如果有空间的话，它们将彼此相邻。
+
+在这里，我们对图片廊使用 float 属性：[示例](https://www.runoob.com/try/try.php?filename=trycss_float_elements)
+
+```css
+.thumbnail 
+{
+    float:left;
+    width:110px;
+    height:90px;
+    margin:5px;
+}
+```
+
+### 清除浮动 - 使用 clear
+
+元素浮动之后，周围的元素会重新排列，为了避免这种情况，使用 clear 属性。
+
+clear 属性指定元素两侧不能出现浮动元素。
+
+使用 clear 属性往文本中添加图片廊：[示例](https://www.runoob.com/try/try2.php?filename=trycss_float_clear)
+
+```css
+.text_line
+{
+    clear:both;
+}
+```
+
+### 示例一：[为图像添加边框和边距并浮动到段落的右侧](https://www.runoob.com/try/try.php?filename=trycss_float2)
+
+让我们为图像添加边框和边距并浮动到段落的右侧
+
+### 示例二：[标题和图片向右侧浮动](https://www.runoob.com/try/try.php?filename=trycss_float3)
+
+让标题和图片向右侧浮动。
+
+### 示例三：[让段落的第一个字母浮动到左侧](https://www.runoob.com/try/try.php?filename=trycss_float4)
+
+改变样式，让段落的第一个字母浮动到左侧。
+
+### 示例四：[创建一个没有表格的网页](https://www.runoob.com/try/try.php?filename=trycss_float6)
+
+使用 float 创建一个网页页眉、页脚、左边的内容和主要内容。
+
+### CSS 中所有的浮动属性
+
+"CSS" 列中的数字表示不同的 CSS 版本（CSS1 或 CSS2）定义了该属性。
+
+|属性|描述|值|CSS|
+|:--|:--|:--|:--|
+|[clear](https://www.runoob.com/cssref/pr-class-clear.html)|指定不允许元素周围有浮动元素。|left<br/>right<br/>both<br/>none<br/>inherit|1|
+|[float](https://www.runoob.com/cssref/pr-class-float.html)|指定一个盒子（元素）是否可以浮动。|left<br/>right<br/>none<br/>inherit|1|
+
+## CSS 布局 - 水平 & 垂直对齐
+
+水平 & 垂直居中对齐
+
+### 元素居中对齐
+
+要水平居中对齐一个元素(如 \<div>), 可以使用`margin: auto;`。
+
+设置到元素的宽度将防止它溢出到容器的边缘。
+
+元素通过指定宽度，并将两边的空外边距平均分配：[示例](https://www.runoob.com/try/try.php?filename=trycss_align_container)
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8"> 
+        <title>菜鸟教程(runoob.com)</title> 
+        <style>
+            .center {
+                margin: auto;
+                width: 60%;
+                border: 3px solid #73AD21;
+                padding: 10px;
+            }
+        </style>
+	</head>
+	<body>
+        <h2>元素居中对齐</h2>
+        <p>水平居中块级元素 (如 div), 可以使用 margin: auto;</p>
+        <div class="center">
+        <p><b>注意: </b>使用 margin:auto 无法兼容 IE8, 除非 !DOCTYPE 已经声明。</p>
+        </div>
+	</body>
+</html>
+```
+
+### 文本居中对齐
+
+如果仅仅是为了文本在元素内居中对齐，可以使用`text-align: center;`
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_align_text)
+
+```css
+.center {
+	text-align: center;
+	border: 3px solid green;
+}
+```
+
+提示: 更多文本对齐实例，请参阅 [CSS 文本](https://www.runoob.com/css/css-text.html) 章节。
+
+### 图片居中对齐
+
+要让图片居中对齐, 可以使用`margin: auto;` 并将它放到 块 元素中:
+
+[示例](https://www.runoob.com/try/try.php?filename=trycss_align_image)
+
+```css
+img {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
+```
+
+### 左右对齐 - 使用定位方式
+
+我们可以使用 position: absolute; 属性来对齐元素:[示例](https://www.runoob.com/try/try.php?filename=trycss_align_pos)
+
+```css
+.right {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+```
+
+注释：绝对定位元素会被从正常流中删除，并且能够交叠元素。
+
+提示: 当使用 position 来对齐元素时, 通常 \<body> 元素会设置 margin 和 padding 。 这样可以避免在不同的浏览器中出现可见的差异。
+
+当使用 position 属性时，IE8 以及更早的版本存在一个问题。如果容器元素（在我们的案例中是 \<div class="container">）设置了指定的宽度，并且省略了 !DOCTYPE 声明，那么 IE8 以及更早的版本会在右侧增加 17px 的外边距。这似乎是为滚动条预留的空间。当使用 position 属性时，请始终设置 !DOCTYPE 声明：
