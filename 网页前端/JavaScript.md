@@ -1693,6 +1693,1186 @@ function uncheckboxed(objName){
 }
 ```
 
+## 示例
+
+### 示例一：[简单的计算器](https://c.runoob.com/codedemo/2815)
+
+### 示例二：[最简单的模拟计算器](https://c.runoob.com/codedemo/3015)
+
+### 示例三：[js模拟计算器](https://c.runoob.com/codedemo/4026)
+
+### 示例四：[简单的计算器应用](https://c.runoob.com/codedemo/4721)
+
+### 示例五：[js实现计算器](https://c.runoob.com/codedemo/3654)
+
+### 示例六：[自制计算器](https://c.runoob.com/codedemo/4786)
+
+### 示例七：[html css js计算器](https://c.runoob.com/codedemo/3124)
+
+### 示例八：[计算器](https://c.runoob.com/codedemo/3880)
+
+## JavaScript 作用域
+
+作用域是可访问变量的集合。
+
+### JavaScript 作用域
+
+在 JavaScript 中, 对象和函数同样也是变量。
+
+**在 JavaScript 中, 作用域为可访问变量，对象，函数的集合。**
+
+JavaScript 函数作用域: 作用域在函数内修改。
+
+### JavaScript 局部作用域
+
+变量在函数内声明，变量为局部作用域。
+
+局部变量：只能在函数内部访问。
+
+因为局部变量只作用于函数内，所以不同的函数可以使用相同名称的变量。
+
+局部变量在函数开始执行时创建，函数执行完后局部变量会自动销毁。
+
+### JavaScript 全局变量
+
+变量在函数外定义，即为全局变量。
+
+全局变量有**全局作用域**: 网页中所有脚本和函数均可使用。 
+
+如果变量在函数内没有声明（没有使用 var 关键字），该变量为全局变量。
+
+### JavaScript 变量生命周期
+
+JavaScript 变量生命周期在它声明时初始化。
+
+局部变量在函数执行完毕后销毁。
+
+全局变量在页面关闭后销毁。
+
+### 函数参数
+
+函数参数只在函数内起作用，是局部变量。
+
+### HTML 中的全局变量
+
+在 HTML 中, 全局变量是 window 对象: 所有数据变量都属于 window 对象。
+
+### tips
+
+你的全局变量，或者函数，可以覆盖 window 对象的变量或者函数。
+局部变量，包括 window 对象可以覆盖全局变量和函数。
+
+### ES6 中的 let 关键字
+
+let 允许你声明一个作用域被限制在块级中的变量、语句或者表达式。与var关键字不同的是，它声明的变量只能是全局或者整个函数块的。
+
+let 语法：
+
+```js
+let var1 [= value1] [, var2 [= value2]] [, ..., varN [= valueN]];
+```
+
+**let 声明的变量只在其声明的块或子块中可用**，这一点，与 var 相似。二者之间最主要的区别在于 **var 声明的变量的作用域是整个封闭函数**。
+
+let 和 var 的区别代码实例：
+
+```js
+function varTest() {
+  var x = 1;
+  if (true) {
+    var x = 2;  // 同样的变量!
+    console.log(x);  // 2
+  }
+  console.log(x);  // 2
+}
+
+function letTest() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // 不同的变量
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+```
+
+### let 和 var的区别
+
+#### 基本用法
+
+ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+
+```js
+{
+  let a = 10;
+  var b = 1;
+}
+
+a // ReferenceError: a is not defined.
+b // 1
+```
+
+上面代码在代码块之中，分别用let和var声明了两个变量。然后在代码块之外调用这两个变量，结果let声明的变量报错，var声明的变量返回了正确的值。这表明，let声明的变量只在它所在的代码块有效。
+
+for循环的计数器，就很合适使用let命令。
+
+```js
+for (let i = 0; i < 10; i++) {
+  // ...
+}
+
+console.log(i);
+// ReferenceError: i is not defined
+```
+
+上面代码中，计数器i只在for循环体内有效，在循环体外引用就会报错。
+
+下面的代码如果使用var，最后输出的是10。
+
+```js
+var a = [];
+for (var i = 0; i < 10; i++) {
+  a[i] = function () {
+    console.log(i);
+  };
+}
+a[6](); // 10
+```
+
+上面代码中，变量i是var命令声明的，在全局范围内都有效，所以全局只有一个变量i。每一次循环，变量i的值都会发生改变，而循环内被赋给数组a的函数内部的console.log(i)，里面的i指向的就是全局的i。也就是说，所有数组a的成员里面的i，指向的都是同一个i，导致运行时输出的是最后一轮的i的值，也就是 10。
+
+如果使用let，声明的变量仅在块级作用域内有效，最后输出的是 6。
+
+```js
+var a = [];
+for (let i = 0; i < 10; i++) {
+  a[i] = function () {
+    console.log(i);
+  };
+}
+a[6](); // 6
+```
+
+上面代码中，变量i是let声明的，当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量，所以最后输出的是6。你可能会问，如果每一轮循环的变量i都是重新声明的，那它怎么知道上一轮循环的值，从而计算出本轮循环的值？这是因为 JavaScript 引擎内部会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算。
+
+另外，for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+
+```js
+for (let i = 0; i < 3; i++) {
+  let i = 'abc';
+  console.log(i);
+}
+// abc
+// abc
+// abc
+```
+
+上面代码正确运行，输出了 3 次abc。这表明**函数内部的变量i与循环变量i不在同一个作用域，有各自单独的作用域**。
+
+## JavaScript 事件
+
+HTML 事件是发生在 HTML 元素上的事情。
+
+当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。
+
+### HTML 事件
+
+HTML 事件可以是浏览器行为，也可以是用户行为。
+
+以下是 HTML 事件的实例：
+
+- HTML 页面完成加载
+- HTML input 字段改变时
+- HTML 按钮被点击
+
+通常，当事件发生时，你可以做些事情。
+
+在事件触发时 JavaScript 可以执行一些代码。
+
+HTML 元素中可以添加事件属性，使用 JavaScript 代码来添加 HTML 元素。
+
+```html
+<some-HTML-element some-event='JavaScript 代码'><!--单引号-->
+<some-HTML-element some-event="JavaScript 代码"><!--双引号-->
+```
+
+在以下实例中，按钮元素中添加了 onclick 属性 (并加上代码):
+
+```html
+<button onclick="getElementById('demo').innerHTML=Date()">现在的时间是?</button>
+```
+
+以上实例中，JavaScript 代码将修改 id="demo" 元素的内容。
+
+在下一个实例中，代码将修改自身元素的内容 (使用 this.innerHTML):
+
+```html
+<button onclick="this.innerHTML=Date()">现在的时间是?</button>
+```
+
+*JavaScript代码通常是几行代码。比较常见的是通过事件属性来调用：*
+
+```html
+<button onclick="displayDate()">现在的时间是?</button>
+```
+
+### 常见的HTML事件
+
+下面是一些常见的HTML事件的列表:
+
+| 事件        | 描述                         |
+| :---------- | :--------------------------- |
+| onchange    | HTML 元素改变                |
+| onclick     | 用户点击 HTML 元素           |
+| onmouseover | 用户在一个HTML元素上移动鼠标 |
+| onmouseout  | 用户从一个HTML元素上移开鼠标 |
+| onkeydown   | 用户按下键盘按键             |
+| onload      | 浏览器已完成页面的加载       |
+
+## JavaScript 可以做什么?
+
+事件可以用于处理表单验证，用户输入，用户行为及浏览器动作:
+
+- 页面加载时触发事件
+- 页面关闭时触发事件
+- 用户点击按钮执行动作
+- 验证用户输入内容的合法性
+- 等等 ...
+
+可以使用多种方法来执行 JavaScript 事件代码：
+
+- HTML 事件属性可以直接执行 JavaScript 代码
+- HTML 事件属性可以调用 JavaScript 函数
+- 你可以为 HTML 元素指定自己的事件处理程序
+- 你可以阻止事件的发生。
+- 等等 ...
+
+### js中设置事件
+
+注意，当在 JS 文件中为相关元素设置事件时，其写法与 HTML 事件属性写法相同，例如：
+
+```html
+<button id="test" onclick="changeContent()">更换内容</button>
+```
+
+在 JS 中则需要这样写：
+
+```js
+var test = document.getElementById("test");
+test.onclick = changeContent(){
+    //......
+}
+```
+
+注：不推荐使用 HTML 元素中可以**添加事件属性**的方式来添加属性。
+
+例子：
+
+```html
+<button onclick="getElementById('demo').innerHTML=Date()">现在的时间是?</button>
+```
+
+因为遵从“高内聚，低耦合”的编程原则。
+
+高内聚是说模块内部要高度聚合，低耦合是说模块与模块之间的藕合度要尽量低。前者是说模块内部的关系，后者是说模块与模块间的关系。
+
+注意：在为元素添加事件句柄或者删除元素事件句柄的过程中，不要将 event 参数设置为 onclick，而必须写成 click，去掉事件名称中的 on 即可。
+
+添加事件句柄函数原型:
+
+```js
+element.addEventListener(event, function, [useCapture])
+```
+
+删除事件句柄的函数原型:
+
+```js
+element.removeEventListener(event, function, [useCapture])
+```
+
+## JavaScript 字符串
+
+JavaScript 字符串用于存储和处理文本。
+
+### JavaScript 字符串
+
+字符串可以存储一系列字符，如 "John Doe"。
+
+字符串可以是插入到引号中的任何字符。你可以使用单引号或双引号：
+```js
+var carname = "Volvo XC60";//双引号
+var carname = 'Volvo XC60';//单引号
+```
+
+你可以使用索引位置来访问字符串中的每个字符：
+```js
+var character = carname[7];//相当于字符数组
+```
+
+字符串的索引从 0 开始，这意味着第一个字符索引值为 [0],第二个为 [1], 以此类推。
+
+你可以在字符串中使用引号，字符串中的引号不要与字符串的引号相同:
+```js
+var answer = "It's alright";
+var answer = "He is called 'Johnny'";
+var answer = 'He is called "Johnny"';
+```
+
+你也可以在字符串添加转义字符来使用引号：
+```js
+var x = 'It\'s alright';
+var y = "He is called \"Johnny\"";
+```
+
+双引号" " 中用单引号 ' ' 可以不用加反斜杠，例如：
+```js
+var x="my name 'is' xxx"  // 此处不需要加反斜杠
+```
+
+双引号" " 中用双引号 " " 需要加反斜杠，例如：
+```js
+var x="my name \"is\" xxx"  // 此处需要在两个上引号前各加一个加反斜杠
+```
+
+单引号 ' ' 中用双引号" " 不需要加反斜杠，当然加了也可以，例如：
+```js
+var x1 ='my name "is" xxx'     // 此处不需要加反斜杠（推荐）
+var x2 ='my name \"is\" xxx'   // 添加反斜杠效果也一样（不推荐）
+```
+
+### 字符串长度
+
+可以使用内置属性 length 来计算字符串的长度：
+```js
+var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var sln = txt.length;
+```
+
+### 特殊字符
+
+在 JavaScript 中，字符串写在单引号或双引号中。
+
+因为这样，以下实例 JavaScript 无法解析：
+```
+ "We are the so-called "Vikings" from the north."
+```
+字符串 "We are the so-called " 被截断。
+
+如何解决以上的问题呢？可以使用反斜杠 (\) 来转义 "Vikings" 字符串中的双引号，如下:
+```
+ "We are the so-called \"Vikings\" from the north."
+```
+ 反斜杠是一个**转义字符**。 转义字符将特殊字符转换为字符串字符：
+
+转义字符 (\) 可以用于转义撇号，换行，引号，等其他特殊字符。
+
+下表中列举了在字符串中可以使用转义字符转义的特殊字符：
+
+| 代码 | 输出        |
+| :--- | :---------- |
+| \'   | 单引号      |
+| \"   | 双引号      |
+| \\   | 反斜杠      |
+| \n   | 换行        |
+| \r   | 回车        |
+| \t   | tab(制表符) |
+| \b   | 退格符      |
+| \f   | 换页符      |
+
+### 字符串可以是对象
+
+通常， JavaScript 字符串是原始值，可以使用字符创建：
+```js
+var firstName = "John"
+```
+
+但我们也可以使用 new 关键字将字符串定义为一个对象：
+```js
+var firstName = new String("John")
+```
+
+*不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用：*
+
+```js
+var x = "John";             
+var y = new String("John");
+(x === y) // 结果为 false，因为 x 是字符串，y 是对象
+```
+*=== 为绝对相等，即数据类型与值都必须相等。*
+
+### 字符串属性和方法
+
+原始值字符串，如 "John", 没有属性和方法(因为他们不是对象)。
+
+原始值可以使用 JavaScript 的属性和方法，因为 JavaScript 在执行方法和属性时可以把原始值当作对象。
+
+字符串方法我们将在下一章节中介绍。
+
+## 字符串属性
+
+| 属性        | 描述                       |
+| :---------- | :------------------------- |
+| constructor | 返回创建字符串属性的函数   |
+| length      | 返回字符串的长度           |
+| prototype   | 允许您向对象添加属性和方法 |
+
+## 字符串方法
+
+更多方法实例可以参见：[JavaScript String 对象](https://www.runoob.com/jsref/jsref-obj-string.html)。
+
+| 方法                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
+| charAt()            | 返回指定索引位置的字符                                       |
+| charCodeAt()        | 返回指定索引位置字符的 Unicode 值                            |
+| concat()            | 连接两个或多个字符串，返回连接后的字符串                     |
+| fromCharCode()      | 将 Unicode 转换为字符串                                      |
+| indexOf()           | 返回字符串中检索指定字符第一次出现的位置                     |
+| lastIndexOf()       | 返回字符串中检索指定字符最后一次出现的位置                   |
+| localeCompare()     | 用本地特定的顺序来比较两个字符串                             |
+| match()             | 找到一个或多个正则表达式的匹配                               |
+| replace()           | 替换与正则表达式匹配的子串                                   |
+| search()            | 检索与正则表达式相匹配的值                                   |
+| slice()             | 提取字符串的片断，并在新的字符串中返回被提取的部分           |
+| split()             | 把字符串分割为子字符串数组                                   |
+| substr()            | 从起始索引号提取字符串中指定数目的字符                       |
+| substring()         | 提取字符串中两个指定的索引号之间的字符                       |
+| toLocaleLowerCase() | 根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射 |
+| toLocaleUpperCase() | 根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射 |
+| toLowerCase()       | 把字符串转换为小写                                           |
+| toString()          | 返回字符串对象值                                             |
+| toUpperCase()       | 把字符串转换为大写                                           |
+| trim()              | 移除字符串首尾空白                                           |
+| valueOf()           | 返回某个字符串对象的原始值                                   |
+
+### JavaScript == 与 === 区别
+
+1、对于 string、number 等基础类型，== 和 === 是有区别的
+
+- a）不同类型间比较，== 之比较 "转化成同一类型后的值" 看 "值" 是否相等，=== 如果类型不同，其结果就是不等。
+-  b）同类型比较，直接进行 "值" 比较，两者结果一样。
+
+2、对于 Array,Object 等高级类型，== 和 === 是没有区别的
+
+进行 "指针地址" 比较
+
+3、基础类型与高级类型，== 和 === 是有区别的
+
+- a）对于 ==，将高级转化为基础类型，进行 "值" 比较
+-  b）因为类型不同，=== 结果为 false
+
+4、!= 为 == 的非运算，!== 为 === 的非运算
+
+```js
+var num=1；
+
+var str="1"；
+
+var test=1；
+
+test == num   //true　相同类型　相同值 
+
+test === num  //true　相同类型　相同值 
+
+test !== num  //false test与num类型相同，其值也相同,　非运算肯定是false 
+
+num == str   //true 　把str转换为数字，检查其是否相等。 
+
+num != str   //false  == 的 非运算 
+
+num === str  //false  类型不同，直接返回false 
+
+num !== str  //true   num 与 str类型不同 意味着其两者不等　非运算自然是true啦
+```
+
+## JavaScript 运算符
+
+运算符 = 用于赋值。
+
+运算符 + 用于加值。
+
+运算符 = 用于给 JavaScript 变量赋值。
+
+算术运算符 + 用于把值加起来。
+
+### JavaScript 算术运算符
+
+y=5，下面的表格解释了这些算术运算符：
+
+|运算符|描述|例子|x 运算结果|y 运算结果|
+|:--|:--|:--|:--|:--|
+|+|加法|x=y+2|7|5|
+|-|减法|x=y-2|3|5|
+|\*|乘法|x=y\*2|10|5|
+|/|除法|x=y/2|2.5|5|
+|%|取模（余数）|x=y%2|1|5|
+|++|自增|x=++y|6|6|
+| | |x=y++|5|6|
+|--|自减|x=--y|4|4|
+| | |x=y--|5|4|
+
+### JavaScript 赋值运算符
+
+赋值运算符用于给 JavaScript 变量赋值。
+
+| 运算符 | 例子 | 等同于 |
+| :----- | :--- | :----- |
+| =      | x=y  |        |
+| +=     | x+=y | x=x+y  |
+| -=     | x-=y | x=x-y  |
+| \*=     | x\*=y | x=x\*y  |
+| /=     | x/=y | x=x/y  |
+| %=     | x%=y | x=x%y  |
+
+取模运算的结果符号只与左边值的符号有关：
+
+```js
+var x = 7 % 3; // 结果为 1
+var y = 7 % (-3); // 结果为 1
+var z = (-7) % 3; // 结果为 -1
+```
+
+-  如果 % 左边的操作数是正数，则模除的结果为正数或零；
+-  如果 % 左边的操作数是负数，则模除的结果为负数或零。
+
+### 用于字符串的 + 运算符
+
++ 运算符用于把文本值或字符串变量加起来（连接起来）。
+
+如需把两个或多个字符串变量连接起来，请使用 + 运算符。
+
+要想在两个字符串之间增加空格，需要把空格插入一个字符串之中：或者把空格插入表达式中：
+
+### 对字符串和数字进行加法运算
+
+两个数字相加，返回数字相加的和，如果数字与字符串相加，返回字符串，如下实例：
+```js
+var result1=5+5+"abc"; //结果将是"10abc"
+
+var result2= ""+5+5+"abc"; //结果将是"55abc"
+```
+
+常见的不同类型运算的转换方式：
+
+1. 字符串和数字相加，数字转成字符串.
+```js
+var one="This is a test";
+var two=123;
+var three=one+two;
+
+// 结果：three:This is a test123
+```
+
+2. 数字和布尔值相加，布尔值 false 转成 0，true 转成 1
+
+```js
+var one=13;
+var two=true;
+var three=one+two;
+// 结果 three:14
+```
+
+3. 字符串与布尔值相加，布尔值转化成字符串。
+
+4. 数字与 null(空值) 相加，null 转化为数字 0：
+```js
+var car=null+3+4;    // 结果为7
+```
+
+字符串与 null(空值) 相加，null 转化为字符串：
+```js
+var car=null+"a";    // 结果为 nulla
+```
+
+## JavaScript 比较 和 逻辑运算符
+
+比较和逻辑运算符用于测试 *true* 或者 *false*。
+
+### 比较运算符
+
+比较运算符在逻辑语句中使用，以测定变量或值是否相等。
+
+x=5，下面的表格解释了比较运算符：
+
+| 运算符 | 描述                                               | 比较    | 返回值  |
+| :----- | :------------------------------------------------- | :------ | :------ |
+| ==     | 等于                                               | x==8    | *false* |
+| | | x==5   | *true*                                             |
+| ===    | 绝对等于（值和类型均相等）                         | x==="5" | *false* |
+| | | x===5  | *true*                                             |
+| !=     | 不等于                                             | x!=8    | *true*  |
+| !==    | 不绝对等于（值和类型有一个不相等，或两个都不相等） | x!=="5" | *true*  |
+| | | x!==5  | *false*                                            |
+| >      | 大于                                               | x>8     | *false* |
+| <      | 小于                                               | x<8     | *true*  |
+| >=     | 大于或等于                                         | x>=8    | *false* |
+| <=     | 小于或等于                                         | x<=8    | *true*  |
+
+### 逻辑运算符
+
+逻辑运算符用于测定变量或值之间的逻辑。
+
+给定 x=6 以及 y=3，下表解释了逻辑运算符：
+
+| 运算符 | 描述 | 例子                        |
+| :----- | :--- | :-------------------------- |
+| &&     | and  | (x < 10 && y > 1) 为 true   |
+| \|\|   | or   | (x\==5 \|\| y\==5) 为 false |
+| !      | not  | !(x==y) 为 true             |
+
+逻辑运算符用于测定变量或值之间的逻辑。除了常用的返回布尔值，也可以利用运算符的逻辑来获得我们想要的数字或枚举变量：
+```js
+0||3 : 3
+
+1||3 : 1
+
+0&&3 : 0
+
+1&&3 : 3
+```
+其他数据类型转换为布尔类型的规则: null、undefined、0、NaN、空字符串转换为false，其他转化为 true。
+
+**JavaScript 中有三种逻辑运算符：**
+
+1. 取反 !
+
+首先把数据转化为布尔值，然后取反，结果为 true 或 false。
+
+2. 逻辑与 &&
+
+JavaScript 中逻辑与和其他语言不太一样，如果第一个操作数是 true(或者能够转为 true)，计算结果就是第二个操作数，如果第一个操作数是 false，结果就是 false（短路计算），对于一些特殊数值不遵循以上规则。(个人理解为:如果运算的第一个操作数为true,则返回第二个操作数,反之则返回第一个操作数)
+
+3. 逻辑或 ||
+
+如果第一个操作数不是 false，结果就是第一个操作数，否则结果是第二个操作数。如果第一个操作数能够转为 true，结果就是第一个操作数(个人理解为:如果运算的第一个操作数为 true,则返回第一个操作数,反之则返回第二个操作数)
+
+### 条件运算符
+
+JavaScript 还包含了基于某些条件对变量进行赋值的条件运算符（三目运算符）。
+```js
+variablename=(condition)?value1:value2 
+```
+
+## JavaScript if...Else 语句
+条件语句用于基于不同的条件来执行不同的动作。
+
+### 条件语句
+通常在写代码时，您总是需要为不同的决定来执行不同的动作。您可以在代码中使用条件语句来完成该任务。
+
+在 JavaScript 中，我们可使用以下条件语句：
+
+if 语句 - 只有当指定条件为 true 时，使用该语句来执行代码
+if...else 语句 - 当条件为 true 时执行代码，当条件为 false 时执行其他代码
+if...else if....else 语句- 使用该语句来选择多个代码块之一来执行
+switch 语句 - 使用该语句来选择多个代码块之一来执行
+
+## JavaScript switch 语句
+
+switch 语句用于基于不同的条件来执行不同的动作。
+```js
+switch(n)
+{
+    case 1:
+        执行代码块 1
+        break;
+    case 2:
+        执行代码块 2
+        break;
+    default:
+        与 case 1 和 case 2 不同时执行的代码
+}
+```
+
+## JavaScript for 循环
+
+循环可以将代码块执行指定的次数。
+
+### JavaScript 循环
+
+如果您希望一遍又一遍地运行相同的代码，并且每次的值都不同，那么使用循环是很方便的。
+
+### 不同类型的循环
+
+JavaScript 支持不同类型的循环：
+
+1. for - 循环代码块一定的次数
+2. for/in - 循环遍历对象的属性
+3. while - 当指定的条件为 true 时循环指定的代码块
+4. do/while - 同样当指定的条件为 true 时循环指定的代码块
+
+### For/In 循环
+
+JavaScript for/in 语句循环遍历对象的属性：
+
+```js
+var person={fname:"John",lname:"Doe",age:25}; 
+ 
+for (x in person)  // x 为属性名
+{
+    txt=txt + person[x];
+}
+```
+for in 循环不仅可以遍历对象的属性，还可以遍历数组。
+```js
+var x
+var nums = [1, 3, 5];
+for (x in nums)
+{
+    document.write(nums[x]+ "<br />");  // x 为数组索引
+}
+```
+### For/Of循环
+
+for 循环除了使用 in 方式来循环数组，还提供了一个方式： of , 遍历数组时更加方便。
+
+for...of 是 ES6 新引入的特性。它既比传统的for循环简洁，同时弥补了forEach和for-in循环的短板。
+
+for-of的语法：
+```js
+for (var value of myArray) {
+  console.log(value);
+}
+```
+
+for-of 的语法看起来跟 for-in 很相似，但它的功能却丰富的多，它能循环很多东西。
+
+**for-of 循环使用例子：**
+
+循环一个数组(Array):
+
+```js
+let iterable = [10, 20, 30];
+
+for (let value of iterable) {
+  console.log(value);
+}
+// 10
+// 20
+// 30
+```
+
+我们可以使用const来替代let，这样它就变成了在循环里的不可修改的静态变量。
+
+```js
+let iterable = [10, 20, 30];
+
+for (const value of iterable) {
+  console.log(value);
+}
+// 10
+// 20
+// 30
+```
+
+循环一个字符串：
+
+```js
+let iterable = "boo";
+
+for (let value of iterable) {
+  console.log(value);
+}
+// "b"
+// "o"
+// "o"
+```
+
+循环一个类型化的数组(TypedArray)：
+
+```js
+let iterable = new Uint8Array([0x00, 0xff]);
+
+for (let value of iterable) {
+  console.log(value);
+}
+// 0
+// 255
+```
+
+循环一个Map:
+
+```js
+let iterable = new Map([["a", 1], ["b", 2], ["c", 3]]);
+
+for (let [key, value] of iterable) {
+  console.log(value);
+}
+// 1
+// 2
+// 3
+
+for (let entry of iterable) {
+  console.log(entry);
+}
+// [a, 1]
+// [b, 2]
+// [c, 3]
+```
+
+循环一个 Set:
+
+```js
+let iterable = new Set([1, 1, 2, 2, 3, 3]);
+
+for (let value of iterable) {
+  console.log(value);
+}
+// 1
+// 2
+// 3
+```
+
+循环一个 DOM collection
+
+循环一个DOM collections，比如NodeList，之前我们讨论过如何循环一个NodeList，现在方便了，可以直接使用for-of循环：
+
+```js
+// Note: This will only work in platforms that have
+// implemented NodeList.prototype[Symbol.iterator]
+let articleParagraphs = document.querySelectorAll("article > p");
+
+for (let paragraph of articleParagraphs) {
+  paragraph.classList.add("read");
+}
+```
+
+循环一个拥有enumerable属性的对象
+
+for–of循环并不能直接使用在普通的对象上，但如果我们按对象所拥有的属性进行循环，可使用内置的Object.keys()方法：
+
+```js
+for (var key of Object.keys(someObject)) {
+  console.log(key + ": " + someObject[key]);
+}
+```
+
+循环一个生成器(generators)
+
+我们可循环一个生成器(generators):
+
+```js
+function* fibonacci() { // a generator function
+  let [prev, curr] = [0, 1];
+  while (true) {
+    [prev, curr] = [curr, prev + curr];
+    yield curr;
+  }
+}
+
+for (let n of fibonacci()) {
+  console.log(n);
+  // truncate the sequence at 1000
+  if (n >= 1000) {
+    break;
+  }
+}
+```
+
+## JavaScript while 循环
+
+只要指定条件为 true，循环就可以一直执行代码块。
+
+### while 循环
+
+while 循环会在指定条件为真时循环执行代码块。
+
+语法
+```js
+while (条件)
+{
+    需要执行的代码
+}
+```
+
+### do/while 循环
+
+do/while 循环是 while 循环的变体。该循环会在检查条件是否为真之前执行一次代码块，然后如果条件为真的话，就会重复这个循环。
+
+语法
+```js
+do
+{
+    需要执行的代码
+}
+while (条件);
+```
+
+## JavaScript break 和 continue 语句
+
+break 语句用于跳出循环。
+
+continue 用于跳过循环中的一个迭代。
+
+### break 语句
+
+我们已经在本教程之前的章节中见到过 break 语句。它用于跳出 switch() 语句。
+
+break 语句可用于跳出循环。
+
+continue 语句跳出循环后，会继续执行该循环之后的代码（如果有的话）：
+
+### continue 语句
+
+continue 语句中断循环中的迭代，如果出现了指定的条件，然后继续循环中的下一个迭代。 
+
+### JavaScript 标签
+
+正如您在 switch 语句那一章中看到的，可以对 JavaScript 语句进行标记。
+
+如需标记 JavaScript 语句，请在语句之前加上冒号：
+```js
+label:
+statements
+```
+
+break 和 continue 语句仅仅是能够跳出代码块的语句。
+
+语法:
+```js
+break labelname; 
+ 
+continue labelname;.
+```
+
+continue 语句（带有或不带标签引用）只能用在循环中。
+
+break 语句（不带标签引用），只能用在循环或 switch 中。
+
+通过标签引用，break 语句可用于跳出任何 JavaScript 代码块：
+
+## JavaScript typeof, null, undefined, valueOf()
+
+### typeof 操作符
+
+你可以使用 typeof 操作符来检测变量的数据类型。
+```js
+typeof "John"                // 返回 string
+typeof 3.14                  // 返回 number
+typeof false                 // 返回 boolean
+typeof [1,2,3,4]             // 返回 object
+typeof {name:'John', age:34} // 返回 object
+//	 在JavaScript中，数组是一种特殊的对象类型。 因此 typeof [1,2,3,4] 返回 object。
+```
+
+### null
+
+在 JavaScript 中 null 表示 "什么都没有"。
+
+null是一个只有一个值的特殊类型。表示一个空对象引用。
+
+*用 typeof 检测 null 返回是object。*
+
+你可以设置为 null 来清空对象:
+你可以设置为 undefined 来清空对象:
+```js
+var person = null;           // 值为 null(空), 但类型为对象
+var person = undefined;     // 值为 undefined, 类型为 undefined
+```
+
+### undefined
+
+在 JavaScript 中, undefined 是一个没有设置值的变量。
+
+typeof 一个没有值的变量会返回 undefined。
+任何变量都可以通过设置值为 undefined 来清空。 类型为 undefined.
+```js
+var person;                  // 值为 undefined(空), 类型是undefined
+person = undefined;          // 值为 undefined, 类型是undefined
+```
+
+### undefined 和 null 的区别
+
+null 和 undefined 的值相等，但类型不等：
+```js
+typeof undefined             // undefined
+typeof null                  // object
+null === undefined           // false
+null == undefined            // true
+```
+
+1. 定义
+
+- （1）undefined：是所有没有赋值变量的默认值，自动赋值。
+- （2）null：主动释放一个变量引用的对象，表示一个变量不再指向任何对象地址。
+
+undefined 与 null 的区别：
+
+表面上 undefined 与 null 都是什么都没有的意思，但是实际上 undefined 是未定义（就是变量没有初始化），null 是一个变量初始化了，但是什么值都没给，只给了一个空对象；进一步说，undefined 与 null是值相等，类型不相等。
+
+2. 何时使用null?
+
+当使用完一个比较大的对象时，需要对其进行释放内存时，设置为 null。
+
+3. null 与 undefined 的异同点是什么呢？
+
+共同点：都是原始类型，保存在栈中变量本地。
+
+不同点：
+
+（1）undefined——表示变量声明过但并未赋过值。
+
+它是所有未赋值变量默认值，例如：
+```js
+var a;    // a 自动被赋值为 undefined
+```
+
+（2）null——表示一个变量将来可能指向一个对象。
+
+一般用于主动释放指向对象的引用，例如：
+```js
+var emps = ['ss','nn'];
+emps = null;     // 释放指向数组的引用
+```
+4. 延伸——垃圾回收站
+
+它是专门释放对象内存的一个程序。
+
+- （1）在底层，后台伴随当前程序同时运行；引擎会定时自动调用垃圾回收期；
+- （2）当有一个对象不再被任何变量引用时，才释放。
+
+## JavaScript 类型转换
+
+Number() 转换为数字， String() 转换为字符串， Boolean() 转化为布尔值。
+
+### JavaScript 数据类型
+
+在 JavaScript 中有 6 种不同的数据类型：
+
+- string
+- number
+- boolean
+- object
+- function
+- symbol
+
+3 种对象类型：
+
+- Object
+- Date
+- Array
+
+2 个不包含任何值的数据类型：
+
+- null
+- undefined
+
+### typeof 操作符
+
+你可以使用 typeof 操作符来查看 JavaScript 变量的数据类型。
+
+请注意：
+
+- NaN 的数据类型是 number
+- 数组(Array)的数据类型是 object
+- 日期(Date)的数据类型为 object
+- null 的数据类型是 object
+- 未定义变量的数据类型为 undefined
+
+如果对象是 JavaScript Array 或 JavaScript Date ，我们就无法通过 **typeof** 来判断他们的类型，因为都是 返回 object。
+
+### constructor 属性
+
+constructor 属性返回所有 JavaScript 变量的构造函数。
+
+```js
+"John".constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] }
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function () {}.constructor         // 返回函数 Function(){ [native code] }
+```
+
+你可以使用 constructor 属性来查看对象是否为数组 (包含字符串 "Array"):
+```js
+function isArray(myArray) {
+    return myArray.constructor.toString().indexOf("Array") > -1;
+}
+```
+
+`return myArray.constructor.toString().indexOf("Array") > -1;`这句话怎么解释?
+
+1、myArray 是函数 isArray 的参数，这里调用函数的时候，会传来数组 fruits。
+
+2、constructor 是一个属性，构造函数属性，不同类型的数据，会得到相应不同的值。因为 myArray 是个数组，这里的 myArray.constructor 的值就是 `function Array() { [native code] }`。(如果 myArray 是个字符串，myArray.constructor 的值就是`function String() { [native code] }`。还有 number，boolean，object，等等。)
+3、toString() 是个方法，变字符串的方法，这里把 `function Array() { [native code] }` 变成字符串，为了后面好检索。
+
+4、indexOf("Array") 是个方法，检索字符串，这里看字符串 `function Array() { [native code] }` 里有没有Array，有就返回首次出现的位置，是一个数值，这里是 9。如果出现在第一个字符，会返回 0。空格参与计数。如果没有找到，就返回 -1。只要 >-1，就说明有 Array，就能判断原来那个函数调用传来的 fruits 是一个数组。如果 `myArray.constructor.toString().indexOf("Object")>-1`，那么 myArray 就是一个 Object 对象。不过那样地话，这个参数的名字就没取好了，应该叫做 myObject。
+
+你可以使用 constructor 属性来查看对象是否为日期 (包含字符串 "Date"):
+```js
+function isDate(myDate) {
+    return myDate.constructor.toString().indexOf("Date") > -1;
+}
+```
+
+## JavaScript 正则表达式
+正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。
+
+搜索模式可用于文本搜索和文本替换。
+
+[正则表达式](正则表达式.md)
+
+### JavaScript 类型转换
+
+JavaScript 变量可以转换为新变量或其他数据类型：
+
+- 通过使用 JavaScript 函数
+- 通过 JavaScript 自身自动转换
+
+### 一元运算符 +
+Operator + 可用于将变量转换为数字：
+```js
+var y = "5";      // y 是一个字符串
+var x = + y;      // x 是一个数字
+```
+
+如果变量不能转换，它仍然会是一个数字，但值为 NaN (不是一个数字):
+```js
+var y = "John";   // y 是一个字符串
+var x = + y;      // x 是一个数字 (NaN)
+```
+
+### 自动转换类型
+
+当 JavaScript 尝试操作一个 "错误" 的数据类型时，会自动转换为 "正确" 的数据类型。
+
+以下输出结果不是你所期望的：
+```js
+5 + null    // 返回 5         null 转换为 0
+"5" + null  // 返回"5null"   null 转换为 "null"
+"5" + 1     // 返回 "51"      1 转换为 "1" 
+"5" - 1     // 返回 4         "5" 转换为 5
+```
+
+### instanceof
+
+判断某个变量是否是某个对象的实例则要选择使用另一个关键语法 instanceof。
+
+可通过 instanceof 操作符来判断对象的具体类型，语法格式:
+```js
+var result = objectName instanceof objectType
+```
+返回布尔值，如果是指定类型返回 true，否则返回 false：
+
+例：
+```js
+arr = [1,2,3];
+if(arr instanceof Array){
+    document.write("arr 是一个数组");
+} else {
+    document.write("arr 不是一个数组");
+}
+```
+
+### NaN
+
+NaN 是一个特殊的数值，NaN 即非数值（Not a Number），这个数值用于本来要返回数值的操作数未返回数值的情况。
+
+NaN 与任何值都不相等，包括 NaN 本身。
+
+可以通过 isNaN() 方法来判断某个数值是否是NaN这个特殊的数，使用 isNaN() 方法会将传入的数值如果是非数值的会将其自动转换成数值类型，若能转换成数值类型，那么这个函数返回 false，若不能转换成数值类型，则这个数就是 NaN，即返回 true。
+
 # JavaScript HTML DOM
 
 ## JavaScript HTML DOM 简介
