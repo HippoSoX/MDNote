@@ -2806,13 +2806,6 @@ function isDate(myDate) {
 }
 ```
 
-## JavaScript 正则表达式
-正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。
-
-搜索模式可用于文本搜索和文本替换。
-
-[正则表达式](正则表达式.md)
-
 ### JavaScript 类型转换
 
 JavaScript 变量可以转换为新变量或其他数据类型：
@@ -2872,6 +2865,1427 @@ NaN 是一个特殊的数值，NaN 即非数值（Not a Number），这个数值
 NaN 与任何值都不相等，包括 NaN 本身。
 
 可以通过 isNaN() 方法来判断某个数值是否是NaN这个特殊的数，使用 isNaN() 方法会将传入的数值如果是非数值的会将其自动转换成数值类型，若能转换成数值类型，那么这个函数返回 false，若不能转换成数值类型，则这个数就是 NaN，即返回 true。
+
+## JavaScript 正则表达式
+
+正则表达式（英语：Regular Expression，在代码中常简写为regex、regexp或RE）使用单个字符串来描述、匹配一系列符合某个句法规则的字符串搜索模式。
+
+搜索模式可用于文本搜索和文本替换。
+
+[正则表达式](正则表达式.md)
+
+## JavaScript 错误/异常处理机制
+
+- try 语句测试代码块的错误。
+
+- catch 语句处理错误。
+
+- throw 语句创建自定义错误。
+
+- finally 语句在 try 和 catch 语句之后，无论是否有触发异常，该语句都会执行。
+
+### JavaScript 错误
+
+当 JavaScript 引擎执行 JavaScript 代码时，会发生各种错误。
+
+可能是语法错误，通常是程序员造成的编码错误或错别字。
+
+可能是拼写错误或语言中缺少的功能（可能由于浏览器差异）。
+
+可能是由于来自服务器或用户的错误输出而导致的错误。
+
+当然，也可能是由于许多其他不可预知的因素。
+
+### JavaScript 抛出（throw）错误
+
+当错误发生时，当事情出问题时，JavaScript 引擎通常会停止，并生成一个错误消息。
+
+描述这种情况的技术术语是：JavaScript 将**抛出**一个错误。
+
+### JavaScript try 和 catch
+
+try 语句允许我们定义在执行时进行错误测试的代码块。
+
+catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+
+JavaScript 语句 try 和 catch 是成对出现的。
+
+语法
+```js
+try {
+    ...    //异常的抛出
+} catch(e) {
+    ...    //异常的捕获与处理
+} finally {
+    ...    //结束处理
+}
+```
+
+### 实例
+
+在下面的例子中，我们故意在 try 块的代码中写了一个错字。
+
+catch 块会捕捉到 try 块中的错误，并执行代码来处理它。
+```js
+var txt=""; 
+function message() 
+{ 
+    try { 
+        adddlert("Welcome guest!"); 
+    } catch(err) { 
+        txt="本页有一个错误。\n\n"; 
+        txt+="错误描述：" + err.message + "\n\n"; 
+        txt+="点击确定继续。\n\n"; 
+        alert(txt); 
+    } 
+}
+```
+
+### finally 语句
+
+finally 语句不论之前的 try 和 catch 中是否产生异常都会执行该代码块。
+```js
+function myFunction() {
+  var message, x;
+  message = document.getElementById("p01");
+  message.innerHTML = "";
+  x = document.getElementById("demo").value;
+  try { 
+    if(x == "") throw "值是空的";
+    if(isNaN(x)) throw "值不是一个数字";
+    x = Number(x);
+    if(x > 10) throw "太大";
+    if(x < 5) throw "太小";
+  }
+  catch(err) {
+    message.innerHTML = "错误: " + err + ".";
+  }
+  finally {
+    document.getElementById("demo").value = "";
+  }
+}
+```
+
+### Throw 语句
+
+throw 语句允许我们创建自定义错误。
+
+正确的技术术语是：创建或**抛出异常**（exception）。
+
+如果把 throw 与 try 和 catch 一起使用，那么您能够控制程序流，并生成自定义的错误消息。
+
+语法
+```
+throw exception
+```
+异常可以是 JavaScript 字符串、数字、逻辑值或对象。
+
+### 实例
+
+本例检测输入变量的值。如果值是错误的，会抛出一个异常（错误）。catch 会捕捉到这个错误，并显示一段自定义的错误消息：
+```js
+function myFunction() {
+    var message, x;
+    message = document.getElementById("message");
+    message.innerHTML = "";
+    x = document.getElementById("demo").value;
+    try { 
+        if(x == "")  throw "值为空";
+        if(isNaN(x)) throw "不是数字";
+        x = Number(x);
+        if(x < 5)    throw "太小";
+        if(x > 10)   throw "太大";
+    }
+    catch(err) {
+        message.innerHTML = "错误: " + err;
+    }
+}
+```
+
+*请注意，如果 getElementById 函数出错，上面的例子也会抛出一个错误。*
+
+## JavaScript 调试
+
+在编写 JavaScript 时，如果没有调试工具将是一件很痛苦的事情。
+
+### JavaScript 调试
+
+没有调试工具是很难去编写 JavaScript 程序的。
+
+你的代码可能包含语法错误，逻辑错误，如果没有调试工具，这些错误比较难于发现。
+
+通常，如果 JavaScript 出现错误，是不会有提示信息，这样你就无法找到代码错误的位置。
+
+*通常，你在编写一个新的 JavaScript 代码过程中都会发生错误。*
+
+### JavaScript 调试工具
+
+在程序代码中寻找错误叫做代码调试。
+
+调试很难，但幸运的是，很多浏览器都内置了调试工具。
+
+内置的调试工具可以开始或关闭，严重的错误信息会发送给用户。
+
+有了调试工具，我们就可以设置断点 (代码停止执行的位置), 且可以在代码执行时检测变量。
+
+浏览器启用调试工具一般是按下 F12 键，并在调试菜单中选择 "Console" 。
+
+### console.log() 方法
+
+如果浏览器支持调试，你可以使用 console.log() 方法在调试窗口上打印 JavaScript 值：
+```js
+a = 5;
+b = 6;
+c = a + b;
+console.log(c);
+```
+
+### 设置断点
+
+在调试窗口中，你可以设置 JavaScript 代码的断点。
+
+在每个断点上，都会停止执行 JavaScript 代码，以便于我们检查 JavaScript 变量的值。
+
+在检查完毕后，可以重新执行代码（如播放按钮）。
+
+### debugger 关键字
+
+debugger 关键字用于停止执行 JavaScript，并调用调试函数。
+
+这个关键字与在调试工具中设置断点的效果是一样的。
+
+如果没有调试可用，debugger 语句将无法工作。
+
+开启 debugger ，代码在第三行前停止执行。
+```js
+var x = 15 * 5;
+debugger;
+document.getElementbyId("demo").innerHTML = x;
+```
+
+### 主要浏览器的调试工具
+
+通常，浏览器启用调试工具一般是按下 F12 键，并在调试菜单中选择 "Console" 。
+
+## JavaScript 变量提升
+
+JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。
+
+JavaScript 中，变量可以在使用后声明，也就是变量可以先使用再声明。
+
+以下两个实例将获得相同的结果：
+```js
+x = 5; // 变量 x 设置为 5
+
+elem = document.getElementById("demo"); // 查找元素
+elem.innerHTML = x;                     // 在元素中显示 x
+
+var x; // 声明 x
+```
+
+```js
+var x; // 声明 x
+x = 5; // 变量 x 设置为 5
+
+elem = document.getElementById("demo"); // 查找元素
+elem.innerHTML = x;  
+```
+
+要理解以上实例就需要理解 "hoisting(变量提升)"。
+
+**变量提升：函数声明和变量声明总是会被解释器悄悄地被"提升"到方法体的最顶部。**
+
+### JavaScript 初始化不会提升
+
+JavaScript 只有声明的变量会提升，初始化的不会。
+
+以下两个实例结果结果不相同：
+```js
+var x = 5; // 初始化 x
+var y = 7; // 初始化 y
+
+elem = document.getElementById("demo"); // 查找元素
+elem.innerHTML = x + " " + y;           // 显示 x 和 y
+```
+
+```js
+var x = 5; // 初始化 x
+
+elem = document.getElementById("demo"); // 查找元素
+elem.innerHTML = x + " " + y;           // 显示 x 和 y
+
+var y = 7; // 初始化 y
+```
+
+实例 2 的 y 输出了 **undefined**，这是因为变量声明 (var y) 提升了，但是初始化(y = 7) 并不会提升，所以 y 变量是一个未定义的变量。
+
+实例 2 类似以下代码:
+```js
+var x = 5; // 初始化 x
+var y;     // 声明 y
+
+elem = document.getElementById("demo"); // 查找元素
+elem.innerHTML = x + " " + y;           // 显示 x 和 y
+
+y = 7;    // 设置 y 为 7
+```
+
+### 在头部声明你的变量
+
+//这tm不是废话吗。。。js也太自由奔放了吧
+
+对于大多数程序员来说并不知道 JavaScript 变量提升。
+
+如果程序员不能很好的理解变量提升，他们写的程序就容易出现一些问题。
+
+为了避免这些问题，通常我们在每个作用域开始前声明这些变量，这也是正常的 JavaScript 解析步骤，易于我们理解。
+
+JavaScript 严格模式(strict mode)不允许使用未声明的变量。
+在下一个章节中我们将会学习到 "严格模式(strict mode)" 。
+
+## JavaScript 严格模式(use strict)
+
+JavaScript 严格模式（strict mode）即在严格的条件下运行。
+
+### 使用 "use strict" 指令
+
+"use strict" 指令在 JavaScript 1.8.5 (ECMAScript5) 中新增。
+
+它不是一条语句，但是是一个字面量表达式，在 JavaScript 旧版本中会被忽略。
+
+"use strict" 的目的是指定代码在严格条件下执行。
+
+严格模式下你不能使用未声明的变量。
+
+*支持严格模式的浏览器:
+Internet Explorer 10 +、 Firefox 4+ Chrome 13+、 Safari 5.1+、 Opera 12+。*
+
+### 严格模式声明
+
+严格模式通过在脚本或函数的头部添加 `"use strict";` 表达式来声明。
+
+实例中我们可以在浏览器按下 F12 (或点击"工具>更多工具>开发者工具") 开启调试模式，查看报错信息。
+```js
+"use strict";
+x = 3.14;       // 报错 (x 未定义)
+```
+
+```js
+"use strict";
+myFunction();
+
+function myFunction() {
+    y = 3.14;   // 报错 (y 未定义)
+}
+```
+
+在函数内部声明是局部作用域 (只在函数内使用严格模式):
+```js
+x = 3.14;       // 不报错
+myFunction();
+
+function myFunction() {
+   "use strict";
+    y = 3.14;   // 报错 (y 未定义)
+}
+```
+
+### 为什么使用严格模式:
+
+- 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+- 消除代码运行的一些不安全之处，保证代码运行的安全；
+- 提高编译器效率，增加运行速度；
+- 为未来新版本的Javascript做好铺垫。
+
+"严格模式"体现了Javascript更合理、更安全、更严谨的发展方向，包括IE 10在内的主流浏览器，都已经支持它，许多大项目已经开始全面拥抱它。
+
+另一方面，同样的代码，在"严格模式"中，可能会有不一样的运行结果；一些在"正常模式"下可以运行的语句，在"严格模式"下将不能运行。掌握这些内容，有助于更细致深入地理解Javascript，让你变成一个更好的程序员。
+
+### 严格模式的限制
+
+//也就是说，在原来非严格模式下这些都是允许的咯。。。js是真的自由奔放
+
+1. 不允许使用未声明的变量：*对象也是一个变量。*
+2. 不允许删除变量或对象。
+3. 不允许删除函数。
+4. 不允许变量重名:
+5. 不允许使用八进制:
+6. 不允许使用转义字符:
+7. 不允许对只读属性赋值:
+8. 不允许对一个使用getter方法读取的属性进行赋值
+9. 不允许删除一个不允许删除的属性：
+10. 变量名不能使用 "eval" 字符串:
+11. 变量名不能使用 "arguments" 字符串:
+12. 不允许使用以下这种语句:
+13. 由于一些安全原因，在作用域 eval() 创建的变量不能被调用：
+14. 禁止this关键字指向全局对象。因此，使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错。
+
+### 保留关键字
+
+为了向将来Javascript的新版本过渡，严格模式新增了一些保留关键字：
+
+- implements
+- interface
+- let
+- package
+- private
+- protected
+- public
+- static
+- yield
+
+***"use strict" 指令只允许出现在脚本或函数的开头。***
+
+## JavaScript 表单
+
+### JavaScript 表单验证
+
+HTML 表单验证可以通过 JavaScript 来完成。
+
+以下实例代码用于判断表单字段(fname)值是否存在， 如果不存在，就弹出信息，阻止表单提交：
+```js
+function validateForm() {
+    var x = document.forms["myForm"]["fname"].value;
+    if (x == null || x == "") {
+        alert("需要输入名字。");
+        return false;
+    }
+}
+```
+
+以上 JavaScript 代码可以通过 HTML 代码来调用：
+```html
+<form name="myForm" action="demo_form.php" onsubmit="return validateForm()" method="post">
+名字: <input type="text" name="fname">
+<input type="submit" value="提交">
+</form>
+```
+
+**onsubmit="return validateForm()"** 为什么不是 **onsubmit="validateForm()"** ？？
+
+**onsubmit="validateForm()"** 能够调用 **validateForm()** 对表单进行验证，但是在验证不通过的情况下，并不能阻止表单提交。
+
+**onsubmit="return validateForm()"** 当验证不通过时，返回 false，可以阻止表单提交。
+
+为何？
+
+原来 onsubmit 属性就像是 \<form> 这个 html 对象的一个方法名，其值（一字符串）就是其方法体，默认返回 true；
+
+```
+onsubmit="return validateForm()"
+```
+
+相当于:
+
+```
+Form.prototype.onsubmit = function() {
+    return validateForm()
+};
+```
+
+这样复写了 onsubmit 的默认方法（默认返回 true），根据 validateForm() 的结果返回 true 或 false，当验证不通过时，返回 false，onsubmit="return false;" 阻止表单提交。
+
+### JavaScript 验证输入的数字
+
+JavaScript 常用于对输入数字的验证：
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>JavaScript 验证输入</h1>
+        <p>请输入 1 到 10 之间的数字：</p>
+        <input id="numb">
+        <button type="button" onclick="myFunction()">提交</button>
+        <p id="demo"></p>
+        <script>
+            function myFunction() {
+                var x, text;
+                // 获取 id="numb" 的值
+                x = document.getElementById("numb").value;
+                // 如果输入的值 x 不是数字或者小于 1 或者大于 10，则提示错误 Not a Number or less than one or greater than 10
+                if (isNaN(x) || x < 1 || x > 10) {
+                	text = "输入错误";
+                } else {
+                	text = "输入正确";
+                }
+                document.getElementById("demo").innerHTML = text;
+            }
+        </script>
+    </body>
+</html>
+```
+
+### HTML 表单自动验证
+
+HTML 表单验证也可以通过浏览器来自动完成。
+
+如果表单字段 (fname) 的值为空, required 属性会阻止表单提交：
+```html
+<form action="demo_form.php" method="post">
+  <input type="text" name="fname" required="required">
+  <input type="submit" value="提交">
+</form>
+```
+
+*Internet Explorer 9 及更早 IE 浏览器不支持表单自动验证。*
+
+**用户体验提示**
+
+表单验证 html 属性 required 有几个缺陷。
+
+就是当一个 input 设置为 required 的时候，在初始化时，因为其本身是空的，所以 invalid 伪类会对它起作用，这不是我们想看到的，此时我们什么还都没有做。
+
+我们可以统一在这些伪类前加上父选择器 .invalid，这时只有在父元素具有 invalid 类时，这些伪类才会起作用。可以设置一个 submit 事件，在表单提交因验证失败后，会触发 input 的 invalid 事件，给 form 添加 invalid 类：
+
+```
+form.addEventListener('invalid'， function() {this.className = 'invalid'}， true)
+```
+
+因为 invaild 是 Input 的事件，而不是 form 的事件，所以这里我们设置第三个参数为 true 采用事件捕获的方式处理，另外 css 选择器的使用对 this.className 影响需要提前处理。
+
+### 数据验证
+
+数据验证用于确保用户输入的数据是有效的。
+
+典型的数据验证有：
+
+- 必需字段是否有输入?
+- 用户是否输入了合法的数据?
+- 在数字字段是否输入了文本?
+- 
+大多数情况下，数据验证用于确保用户正确输入数据。
+
+数据验证可以使用不同方法来定义，并通过多种方式来调用。
+
+**服务端数据验证**是在数据提交到服务器上后再验证。
+
+**客户端数据验证**是在数据发送到服务器前，在浏览器上完成验证。
+
+### HTML 约束验证
+
+HTML5 新增了 HTML 表单的验证方式：约束验证（constraint validation）。
+
+约束验证是表单被提交时浏览器用来实现验证的一种算法。
+
+HTML 约束验证基于：
+
+- HTML 输入属性
+- CSS 伪类选择器
+- DOM 属性和方法
+
+#### 约束验证 HTML 输入属性
+
+| 属性     | 描述                     |
+| :------- | :----------------------- |
+| disabled | 规定输入的元素不可用     |
+| max      | 规定输入元素的最大值     |
+| min      | 规定输入元素的最小值     |
+| pattern  | 规定输入元素值的模式     |
+| required | 规定输入元素字段是必需的 |
+| type     | 规定输入元素的类型       |
+
+完整列表，请查看 [HTML 输入属性](https://www.runoob.com/html/html5-form-attributes.html)。
+
+#### 约束验证 CSS 伪类选择器
+
+| 选择器    | 描述                                    |
+| :-------- | :-------------------------------------- |
+| :disabled | 选取属性为 "disabled" 属性的 input 元素 |
+| :invalid  | 选取无效的 input 元素                   |
+| :optional | 选择没有"required"属性的 input 元素     |
+| :required | 选择有"required"属性的 input 元素       |
+| :valid    | 选取有效值的 input 元素                 |
+
+完整列表，请查看 [CSS 伪类](https://www.runoob.com/css/css-pseudo-classes.html)。
+
+## JavaScript 表单验证
+
+### JavaScript 表单验证
+
+JavaScript 可用来在数据被送往服务器前对 HTML 表单中的这些输入数据进行验证。
+
+表单数据经常需要使用 JavaScript 来验证其正确性：
+
+- 验证表单数据是否为空？
+- 验证输入是否是一个正确的email地址？
+- 验证日期是否输入正确？
+- 验证表单输入内容是否为数字型？
+
+### 必填（或必选）项目
+
+下面的函数用来检查用户是否已填写表单中的必填（或必选）项目。假如必填或必选项为空，那么警告框会弹出，并且函数的返回值为 false，否则函数的返回值则为 true（意味着数据没有问题）：
+
+```js
+function validateForm()
+{
+  var x=document.forms["myForm"]["fname"].value;
+  if (x==null || x=="")
+  {
+    alert("姓必须填写");
+    return false;
+  }
+}
+```
+
+以上函数在 form 表单提交时被调用:
+```html
+<form name="myForm" action="demo-form.php" onsubmit="return validateForm()" method="post">
+姓: <input type="text" name="fname">
+<input type="submit" value="提交">
+</form>
+```
+
+### E-mail 验证
+
+下面的函数检查输入的数据是否符合电子邮件地址的基本语法。
+
+意思就是说，输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：
+```js
+function validateForm(){
+  var x=document.forms["myForm"]["email"].value;
+  var atpos=x.indexOf("@");
+  var dotpos=x.lastIndexOf(".");
+  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+    alert("不是一个有效的 e-mail 地址");
+    return false;
+  }
+}
+```
+
+下面是连同 HTML 表单的完整代码：
+```html
+<form name="myForm" action="demo-form.php" onsubmit="return validateForm();" method="post">
+    Email: <input type="text" name="email">
+    <input type="submit" value="提交">
+</form>
+```
+
+## JavaScript 验证 API
+
+约束验证 DOM 方法
+
+| Property            | Description                                                  |
+| :------------------ | :----------------------------------------------------------- |
+| checkValidity()     | 如果 input 元素中的数据是合法的返回 true，否则返回 false。   |
+| setCustomValidity() | 设置 input 元素的 validationMessage 属性，用于自定义错误提示信息的方法。使用 setCustomValidity 设置了自定义提示后，validity.customError 就会变成true，则 checkValidity 总是会返回false。如果要重新判断需要取消自定义提示，方式如下：`setCustomValidity('')  setCustomValidity(null)  setCustomValidity(undefined)` |
+
+以下实例如果输入信息不合法，则返回错误信息：
+```html
+<input id="id1" type="number" min="100" max="300" required> <button onclick="myFunction()">验证</button>
+<p id="demo"></p>
+<script>
+	function myFunction() {
+		var inpObj = document.getElementById("id1");
+		if (inpObj.checkValidity() == false) {
+			document.getElementById("demo").innerHTML = inpObj.validationMessage;    
+		} 
+	}
+</script>
+```
+
+### 约束验证 DOM 属性
+
+| 属性              | 描述                                  |
+| :---------------- | :------------------------------------ |
+| validity          | 布尔属性值，返回 input 输入值是否合法 |
+| validationMessage | 浏览器错误提示信息                    |
+| willValidate      | 指定 input 是否需要验证               |
+
+### Validity 属性
+
+input 元素的 **validity 属性**包含一系列关于 validity 数据属性:
+
+| 属性            | 描述                                                       |
+| :-------------- | :--------------------------------------------------------- |
+| customError     | 设置为 true, 如果设置了自定义的 validity 信息。            |
+| patternMismatch | 设置为 true, 如果元素的值不匹配它的模式属性。              |
+| rangeOverflow   | 设置为 true, 如果元素的值大于设置的最大值。                |
+| rangeUnderflow  | 设置为 true, 如果元素的值小于它的最小值。                  |
+| stepMismatch    | 设置为 true, 如果元素的值不是按照规定的 step 属性设置。    |
+| tooLong         | 设置为 true, 如果元素的值超过了 maxLength 属性设置的长度。 |
+| typeMismatch    | 设置为 true, 如果元素的值不是预期相匹配的类型。            |
+| valueMissing    | 设置为 true，如果元素 (required 属性) 没有值。             |
+| valid           | 设置为 true，如果元素的值是合法的。                        |
+
+### 实例
+
+如果输入的值大于 100，显示一个信息：
+
+rangeOverflow 属性
+```html
+<input id="id1" type="number" max="100">
+<button onclick="myFunction()">验证</button>
+ 
+<p id="demo"></p>
+ 
+<script>
+function myFunction() {
+    var txt = "";
+    if (document.getElementById("id1").validity.rangeOverflow) {
+       txt = "输入的值太大了";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+```
+
+如果输入的值小于 100，显示一个信息：
+
+rangeUnderflow 属性
+```html
+<input id="id1" type="number" min="100" required>
+<button onclick="myFunction()">OK</button>
+ 
+<p id="demo"></p>
+ 
+<script>
+function myFunction() {
+    var txt = "";
+    var inpObj = document.getElementById("id1");
+    if(!isNumeric(inpObj.value)) {
+        txt = "你输入的不是数字";
+    } else if (inpObj.validity.rangeUnderflow) {
+        txt = "输入的值太小了";
+    } else {
+        txt = "输入正确";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+ 
+// 判断输入是否为数字
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+</script>
+```
+
+## JavaScript 保留关键字
+
+在 JavaScript 中，一些标识符是保留关键字，不能用作变量名或函数名。
+
+### JavaScript 标准
+
+所有的现代浏览器完全支持 ECMAScript 3（ES3，JavaScript 的第三版，从 1999 年开始）。
+
+ECMAScript 4（ES4）未通过。
+
+ECMAScript 5（ES5，2009 年发布），是 JavaScript 最新的官方版本。
+
+随着时间的推移，我们开始看到，所有的现代浏览器已经完全支持 ES5。
+
+### JavaScript 保留关键字
+
+Javascript 的保留关键字不可以用作变量、标签或者函数名。有些保留关键字是作为 Javascript 以后扩展使用。
+
+| | | | | |
+| -------- | --------- | ---------- | --------- | ------------ |
+| abstract | arguments | boolean    | break     | byte         |
+| case     | catch     | char       | class*    | const        |
+| continue | debugger  | default    | delete    | do           |
+| double   | else      | enum*      | eval      | export*      |
+| extends* | false     | final      | finally   | float        |
+| for      | function  | goto       | if        | implements   |
+| import*  | in        | instanceof | int       | interface    |
+| let      | long      | native     | new       | null         |
+| package  | private   | protected  | public    | return       |
+| short    | static    | super*     | switch    | synchronized |
+| this     | throw     | throws     | transient | true         |
+| try      | typeof    | var        | void      | volatile     |
+| while    | with      | yield      |           |              |
+
+\* 标记的关键字是 ECMAScript5 中新添加的。
+
+### JavaScript 对象、属性和方法
+
+您也应该避免使用 JavaScript 内置的对象、属性和方法的名称作为 Javascript 的变量或函数名：
+
+| Array     | Date     | eval     | function      | hasOwnProperty |
+| --------- | -------- | -------- | ------------- | -------------- |
+| Infinity  | isFinite | isNaN    | isPrototypeOf | length         |
+| Math      | NaN      | name     | Number        | Object         |
+| prototype | String   | toString | undefined     | valueOf        |
+
+### Java 保留关键字
+
+JavaScript 经常与 Java 一起使用。您应该避免使用一些 Java 对象和属性作为 JavaScript 标识符：
+
+| getClass | java | JavaArray | javaClass | JavaObject | JavaPackage |
+| -------- | ---- | --------- | --------- | ---------- | ----------- |
+| | | | |
+
+### Windows 保留关键字
+
+JavaScript 可以在 HTML 外部使用。它可在许多其他应用程序中作为编程语言使用。
+
+在 HTML 中，您必须（为了可移植性，您也应该这么做）避免使用 HTML 和 Windows 对象和属性的名称作为 Javascript 的变量及函数名：
+
+| alert          | all                | anchor      | anchors            | area               |
+| -------------- | ------------------ | ----------- | ------------------ | ------------------ |
+| assign         | blur               | button      | checkbox           | clearInterval      |
+| clearTimeout   | clientInformation  | close       | closed             | confirm            |
+| constructor    | crypto             | decodeURI   | decodeURIComponent | defaultStatus      |
+| document       | element            | elements    | embed              | embeds             |
+| encodeURI      | encodeURIComponent | escape      | event              | fileUpload         |
+| focus          | form               | forms       | frame              | innerHeight        |
+| innerWidth     | layer              | layers      | link               | location           |
+| mimeTypes      | navigate           | navigator   | frames             | frameRate          |
+| hidden         | history            | image       | images             | offscreenBuffering |
+| open           | opener             | option      | outerHeight        | outerWidth         |
+| packages       | pageXOffset        | pageYOffset | parent             | parseFloat         |
+| parseInt       | password           | pkcs11      | plugin             | prompt             |
+| propertyIsEnum | radio              | reset       | screenX            | screenY            |
+| scroll         | secure             | select      | self               | setInterval        |
+| setTimeout     | status             | submit      | taint              | text               |
+| textarea       | top                | unescape    | untaint            | window             |
+
+### HTML 事件句柄
+
+除此之外，您还应该避免使用 HTML 事件句柄的名称作为 Javascript 的变量及函数名。
+
+实例：
+
+| onblur    | onclick    | onerror     | onfocus     |
+| --------- | ---------- | ----------- | ----------- |
+| onkeydown | onkeypress | onkeyup     | onmouseover |
+| onload    | onmouseup  | onmousedown | onsubmit    |
+
+### 非标准 JavaScript
+
+除了保留关键字，在 JavaScript 实现中也有一些非标准的关键字。
+
+一个实例是 **const** 关键字，用于定义变量。 一些 JavaScript 引擎把 const 当作 var 的同义词。另一些引擎则把 const 当作只读变量的定义。
+
+Const 是 JavaScript 的扩展。JavaScript 引擎支持它用在 Firefox 和 Chrome 中。但是它并不是 JavaScript 标准 ES3 或 ES5 的组成部分。**建议：不要使用它**。
+
+## JavaScript this 关键字
+
+面向对象语言中 this 表示当前对象的一个引用。
+
+但在 JavaScript 中 this 不是固定不变的，它会随着执行环境的改变而改变。
+
+- 在方法中，this 表示该方法所属的对象。
+- 如果单独使用，this 表示全局对象。
+- 在函数中，this 表示全局对象。
+- 在函数中，在严格模式下，this 是未定义的(undefined)。
+- 在事件中，this 表示接收事件的元素。
+- 类似 call() 和 apply() 方法可以将 this 引用到任何对象。
+
+```js
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+```
+
+### 方法中的 this
+
+在对象方法中， this 指向调用它所在方法的对象。
+
+在上面一个实例中，this 表示 person 对象。
+
+fullName 方法所属的对象就是 person。
+
+### 单独使用 this
+
+单独使用 this，则它指向全局(Global)对象。
+
+在浏览器中，window 就是该全局对象为 [object Window]:
+```js
+var x = this;
+```
+
+严格模式下，如果单独使用，this 也是指向全局(Global)对象。
+```js
+"use strict";
+var x = this;
+```
+
+### 函数中使用 this（默认）
+在函数中，函数的所属者默认绑定到 this 上。
+
+在浏览器中，window 就是该全局对象为 [object Window]:
+```js
+function myFunction() {
+  return this;
+}
+```
+
+### 函数中使用 this（严格模式）
+
+严格模式下函数是没有绑定到 this 上，这时候 this 是 undefined。
+```js
+"use strict";
+function myFunction() {
+  return this;
+}
+```
+
+### 事件中的 this
+
+在 HTML 事件句柄中，this 指向了接收事件的 HTML 元素：
+```html
+<button onclick="this.style.display='none'">
+点我后我就消失了
+</button>
+```
+
+### 对象方法中绑定
+
+下面实例中，this 是 person 对象，person 对象是函数的所有者：
+```js
+var person = {
+  firstName  : "John",
+  lastName   : "Doe",
+  id         : 5566,
+  myFunction : function() {
+    return this;
+  }
+};
+```
+
+```js
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+```
+*说明: this.firstName 表示 this (person) 对象的 firstName 属性。*
+
+### 显式函数绑定
+
+在 JavaScript 中函数也是对象，对象则有方法，apply 和 call 就是函数对象的方法。这两个方法异常强大，他们允许切换函数执行的上下文环境（context），即 this 绑定的对象。
+
+在下面实例中，当我们使用 person2 作为参数来调用 person1.fullName 方法时, this 将指向 person2, 即便它是 person1 的方法：
+```js
+var person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+var person2 = {
+  firstName:"John",
+  lastName: "Doe",
+}
+person1.fullName.call(person2);  // 返回 "John Doe"
+```
+### 总结
+
+this 的多种指向:
+
+1. 在对象方法中， this 指向调用它所在方法的对象。
+2. 单独使用 this，它指向全局(Global)对象。
+3. 函数使用中，this 指向函数的所属者。
+4. 严格模式下函数是没有绑定到 this 上，这时候 this 是 undefined。
+5. 在 HTML 事件句柄中，this 指向了接收事件的 HTML 元素。
+6. apply 和 call 允许切换函数执行的上下文环境（context），即 this 绑定的对象，可以将 this 引用到任何对象。
+
+## JavaScript let 和 const
+
+**ECMAScript 2015(ECMAScript 6)**
+
+ES2015(ES6) 新增加了两个重要的 JavaScript 关键字: **let** 和 **const**。
+
+let 声明的变量只在 let 命令所在的代码块内有效。
+
+const 声明一个只读的常量，一旦声明，常量的值就不能改变。
+
+在 ES6 之前，JavaScript 只有两种作用域：**全局变量**与**函数内的局部变量**。
+
+### 全局变量
+
+在函数外声明的变量作用域是全局的：
+```js
+var carName = "Volvo";
+ 
+// 这里可以使用 carName 变量
+ 
+function myFunction() {
+    // 这里也可以使用 carName 变量
+}
+```
+全局变量在 JavaScript 程序的任何地方都可以访问。
+
+### 局部变量
+
+在函数内声明的变量作用域是局部的（函数内）：
+```js
+// 这里不能使用 carName 变量
+ 
+function myFunction() {
+    var carName = "Volvo";
+    // 这里可以使用 carName 变量
+}
+ 
+// 这里不能使用 carName 变量
+```
+
+函数内使用 var 声明的变量只能在函数内容访问，如果不使用 var 则是全局变量。
+
+### JavaScript 块级作用域(Block Scope)
+
+使用 var 关键字声明的变量不具备块级作用域的特性，它在 {} 外依然能被访问到。
+```js
+{ 
+    var x = 2; 
+}
+// 这里可以使用 x 变量
+```
+在 ES6 之前，是没有块级作用域的概念的。
+
+ES6 可以使用 let 关键字来实现块级作用域。
+
+let 声明的变量只在 let 命令所在的代码块 {} 内有效，在 {} 之外不能访问。
+```js
+{ 
+    let x = 2;
+}
+// 这里不能使用 x 变量
+```
+
+### 重新定义变量
+
+使用 var 关键字重新声明变量可能会带来问题。
+
+在块中重新声明变量也会重新声明块外的变量：
+```js
+var x = 10;
+// 这里输出 x 为 10
+{ 
+    var x = 2;
+    // 这里输出 x 为 2
+}
+// 这里输出 x 为 2
+```
+
+let 关键字就可以解决这个问题，因为它只在 let 命令所在的代码块 {} 内有效。
+```js
+var x = 10;
+// 这里输出 x 为 10
+{ 
+    let x = 2;
+    // 这里输出 x 为 2
+}
+// 这里输出 x 为 10
+```
+
+### 循环作用域
+
+使用 var 关键字：
+```js
+var i = 5;
+for (var i = 0; i < 10; i++) {
+    // 一些代码...
+}
+// 这里输出 i 为 10
+```
+
+使用 let 关键字：
+```js
+let i = 5;
+for (let i = 0; i < 10; i++) {
+    // 一些代码...
+}
+// 这里输出 i 为 5
+```
+
+在第一个实例中，使用了 var 关键字，它声明的变量是全局的，包括循环体内与循环体外。
+
+在第二个实例中，使用 let 关键字， 它声明的变量作用域只在循环体内，循环体外的变量不受影响。
+
+### 局部变量
+
+在函数体内使用 var 和 let 关键字声明的变量有点类似。
+
+它们的作用域都是 局部的:
+```js
+// 使用 var
+function myFunction() {
+    var carName = "Volvo";   // 局部作用域
+}
+
+// 使用 let
+function myFunction() {
+    let carName = "Volvo";   //  局部作用域
+}
+```
+
+### 全局变量
+
+在函数体外或代码块外使用 var 和 let 关键字声明的变量也有点类似。
+
+它们的作用域都是 全局的:
+```js
+// 使用 var
+var x = 2;       // 全局作用域
+
+// 使用 let
+let x = 2;       // 全局作用域
+```
+
+### HTML 代码中使用全局变量
+
+在 JavaScript 中, 全局作用域是针对 JavaScript 环境。
+
+在 HTML 中, 全局作用域是针对 window 对象。
+
+使用 var 关键字声明的全局作用域变量属于 window 对象:
+```js
+var carName = "Volvo";
+// 可以使用 window.carName 访问变量
+```
+
+使用 let 关键字声明的全局作用域变量不属于 window 对象:
+```jd
+let carName = "Volvo";
+// 不能使用 window.carName 访问变量
+```
+
+### 重置变量
+
+使用 var 关键字声明的变量在任何地方都可以修改：
+```js
+var x = 2;
+ 
+// x 为 2
+ 
+var x = 3;
+ 
+// 现在 x 为 3
+```
+
+在相同的作用域或块级作用域中，不能使用 let 关键字来重置 var 关键字声明的变量:
+```js
+var x = 2;       // 合法
+let x = 3;       // 不合法
+
+{
+    var x = 4;   // 合法
+    let x = 5   // 不合法
+}
+```
+
+在相同的作用域或块级作用域中，不能使用 let 关键字来重置 let 关键字声明的变量:
+```js
+let x = 2;       // 合法
+let x = 3;       // 不合法
+
+{
+    let x = 4;   // 合法
+    let x = 5;   // 不合法
+}
+```
+
+在相同的作用域或块级作用域中，不能使用 var 关键字来重置 let 关键字声明的变量:
+```js
+let x = 2;       // 合法
+var x = 3;       // 不合法
+
+{
+    let x = 4;   // 合法
+    var x = 5;   // 不合法
+}
+```
+
+let 关键字在不同作用域，或不同块级作用域中是可以重新声明赋值的:
+```js
+let x = 2;       // 合法
+
+{
+    let x = 3;   // 合法
+}
+
+{
+    let x = 4;   // 合法
+}
+```
+
+### 变量提升
+
+JavaScript 中，var 关键字定义的变量可以在使用后声明，也就是变量可以先使用再声明（[JavaScript 变量提升](https://www.runoob.com/js/js-hoisting.html)）。
+
+```js
+// 在这里可以使用 carName 变量
+
+var carName;
+```
+
+let 关键字定义的变量则不可以在使用后声明，也就是变量需要先声明再使用。
+
+```js
+// 在这里不可以使用 carName 变量
+
+let carName;
+```
+
+### const 关键字
+
+const 用于声明一个或多个常量，声明时必须进行初始化，且初始化后值不可再修改：
+```js
+const PI = 3.141592653589793;
+PI = 3.14;      // 报错
+PI = PI + 10;   // 报错
+```
+
+`const`定义常量与使用`let` 定义的变量相似：
+
+- 二者都是块级作用域
+- 都不能和它所在作用域内的其他变量或函数拥有相同的名称
+
+两者还有以下两点区别：
+
+- `const`声明的常量必须初始化，而`let`声明的变量不用
+- const 定义常量的值不能通过再赋值修改，也不能再次声明。而 let 定义的变量值可以修改。
+
+```js
+var x = 10;
+// 这里输出 x 为 10
+{ 
+    const x = 2;
+    // 这里输出 x 为 2
+}
+// 这里输出 x 为 10
+```
+
+### const的本质：并非真正的常量
+
+const 的本质: const 定义的变量并非常量，并非不可变，它定义了一个常量引用一个值。使用 const 定义的对象或者数组，其实是可变的。下面的代码并不会报错：
+
+//感觉一定程度上可以理解为指向变量的常指针
+
+```js
+// 创建常量对象
+const car = {type:"Fiat", model:"500", color:"white"};
+ 
+// 修改属性:
+car.color = "red";
+ 
+// 添加属性
+car.owner = "Johnson";
+```
+
+//js真是自由奔放
+
+但是我们不能对常量对象重新赋值：
+```js
+const car = {type:"Fiat", model:"500", color:"white"};
+car = {type:"Volvo", model:"EX60", color:"red"};    // 错误
+```
+
+以下实例修改常量数组：
+```js
+// 创建常量数组
+const cars = ["Saab", "Volvo", "BMW"];
+ 
+// 修改元素
+cars[0] = "Toyota";
+ 
+// 添加元素
+cars.push("Audi");
+```
+
+但是我们不能对常量数组重新赋值：
+```js
+const cars = ["Saab", "Volvo", "BMW"];
+cars = ["Toyota", "Volvo", "Audi"];    // 错误
+```
+
+### 重置变量
+
+使用 **var** 关键字声明的变量在任何地方都可以修改：
+
+#### 实例
+```js
+var x = 2;    //  合法 
+var x = 3;    //  合法 
+x = 4;        //  合法
+```
+
+在相同的作用域或块级作用域中，不能使用 **const** 关键字来重置 **var** 和 **let**关键字声明的变量:
+
+```js
+var x = 2;         // 合法
+const x = 2;       // 不合法
+{
+    let x = 2;     // 合法
+    const x = 2;   // 不合法
+}
+```
+
+在相同的作用域或块级作用域中，不能使用 **const** 关键字来重置 **const** 关键字声明的变量:
+
+```js
+const x = 2;       // 合法
+const x = 3;       // 不合法
+x = 3;             // 不合法
+var x = 3;         // 不合法
+let x = 3;         // 不合法
+
+{
+    const x = 2;   // 合法
+    const x = 3;   // 不合法
+    x = 3;         // 不合法
+    var x = 3;     // 不合法
+    let x = 3;     // 不合法
+}
+```
+
+**const** 关键字在不同作用域，或不同块级作用域中是可以重新声明赋值的:
+
+```js
+const x = 2;       // 合法
+
+{
+    const x = 3;   // 合法
+}
+
+{
+    const x = 4;   // 合法
+}
+```
+
+### 变量提升
+
+JavaScript var 关键字定义的变量可以在使用后声明，也就是变量可以先使用再声明（[JavaScript 变量提升](https://www.runoob.com/js/js-hoisting.html)）。
+
+```js
+carName = "Volvo";    // 这里可以使用 carName 变量 
+var carName;
+```
+const 关键字定义的变量则不可以在使用后声明，也就是变量需要先声明再使用。
+
+```js
+carName = "Volvo";    // 在这里不可以使用 carName 变量
+const carName = "Volvo";
+```
+
+## JavaScript JSON
+
+JSON 是用于存储和传输数据的格式。
+
+JSON 通常用于服务端向网页传递数据 。
+
+### 什么是 JSON?
+
+- JSON 英文全称 JavaScript Object Notation
+- JSON 是一种轻量级的数据交换格式。
+- JSON是独立的语言 \*
+- JSON 易于理解。
+
+***JSON 使用 JavaScript 语法，但是 JSON 格式仅仅是一个文本。
+文本可以被任何编程语言读取及作为数据格式传递。***
+
+### JSON 实例
+
+以下 JSON 语法定义了 sites 对象: 3 条网站信息（对象）的数组:
+```json
+{"sites":[
+    {"name":"Runoob", "url":"www.runoob.com"}, 
+    {"name":"Google", "url":"www.google.com"},
+    {"name":"Taobao", "url":"www.taobao.com"}
+]}
+```
+
+### JSON 格式化后为 JavaScript 对象
+
+JSON 格式在语法上与创建 JavaScript 对象代码是相同的。
+
+由于它们很相似，所以 JavaScript 程序可以很容易的将 JSON 数据转换为 JavaScript 对象。
+
+### JSON 语法规则
+
+- 数据为 键/值 对。
+- 数据由逗号分隔。
+- 大括号保存对象
+- 方括号保存数组
+
+### JSON 数据 - 一个名称对应一个值
+
+JSON 数据格式为 键/值 对，就像 JavaScript 对象属性。
+
+键/值对包括字段名称（在双引号中），后面一个冒号，然后是值：
+```json
+"name":"Runoob"
+```
+
+### JSON 对象
+
+JSON 对象保存在大括号内。
+
+就像在 JavaScript 中, 对象可以保存多个 键/值 对：
+
+```json
+{"name":"Runoob", "url":"www.runoob.com"}
+```
+
+### JSON 数组
+
+JSON 数组保存在中括号内。
+
+就像在 JavaScript 中, 数组可以包含对象：
+
+```json
+"sites":[
+    {"name":"Runoob", "url":"www.runoob.com"}, 
+    {"name":"Google", "url":"www.google.com"},
+    {"name":"Taobao", "url":"www.taobao.com"}
+]
+```
+
+在以上实例中，对象 "sites" 是一个数组，包含了三个对象。
+
+每个对象为站点的信息（网站名和网站地址）。
+
+### JSON 字符串转换为 JavaScript 对象
+
+通常我们从服务器中读取 JSON 数据，并在网页中显示数据。
+
+简单起见，我们网页中直接设置 JSON 字符串 (你还可以阅读我们的 JSON 教程):
+
+首先，创建 JavaScript 字符串，字符串为 JSON 格式的数据：
+
+```json
+var text = '{ "sites" : [' +
+'{ "name":"Runoob" , "url":"www.runoob.com" },' +
+'{ "name":"Google" , "url":"www.google.com" },' +
+'{ "name":"Taobao" , "url":"www.taobao.com" } ]}';
+```
+
+然后，使用 JavaScript 内置函数 JSON.parse() 将字符串转换为 JavaScript 对象:
+
+```js
+var obj = JSON.parse(text);
+```
+
+最后，在你的页面中使用新的 JavaScript 对象：
+```js
+var text = '{ "sites" : [' +
+    '{ "name":"Runoob" , "url":"www.runoob.com" },' +
+    '{ "name":"Google" , "url":"www.google.com" },' +
+    '{ "name":"Taobao" , "url":"www.taobao.com" } ]}';
+    
+obj = JSON.parse(text);
+document.getElementById("demo").innerHTML = obj.sites[1].name + " " + obj.sites[1].url;
+```
+
+### 相关函数
+
+| 函数                                                         | 描述                                           |
+| :----------------------------------------------------------- | :--------------------------------------------- |
+| [JSON.parse()](https://www.runoob.com/js/javascript-json-parse.html) | 用于将一个 JSON 字符串转换为 JavaScript 对象。 |
+| [JSON.stringify()](https://www.runoob.com/js/javascript-json-stringify.html) | 用于将 JavaScript 值转换为 JSON 字符串。       |
+
+更多 JSON 信息，你可以阅读我们的 [JSON 教程](https://www.runoob.com/json/json-tutorial.html)。
 
 # JavaScript HTML DOM
 
