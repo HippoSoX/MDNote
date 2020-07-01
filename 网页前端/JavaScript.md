@@ -1929,7 +1929,7 @@ HTML 元素中可以添加事件属性，使用 JavaScript 代码来添加 HTML 
 | onkeydown   | 用户按下键盘按键             |
 | onload      | 浏览器已完成页面的加载       |
 
-## JavaScript 可以做什么?
+### JavaScript 可以做什么?
 
 事件可以用于处理表单验证，用户输入，用户行为及浏览器动作:
 
@@ -2108,7 +2108,7 @@ var y = new String("John");
 
 字符串方法我们将在下一章节中介绍。
 
-## 字符串属性
+### 字符串属性
 
 | 属性        | 描述                       |
 | :---------- | :------------------------- |
@@ -2116,7 +2116,7 @@ var y = new String("John");
 | length      | 返回字符串的长度           |
 | prototype   | 允许您向对象添加属性和方法 |
 
-## 字符串方法
+### 字符串方法
 
 更多方法实例可以参见：[JavaScript String 对象](https://www.runoob.com/jsref/jsref-obj-string.html)。
 
@@ -4286,6 +4286,927 @@ document.getElementById("demo").innerHTML = obj.sites[1].name + " " + obj.sites[
 | [JSON.stringify()](https://www.runoob.com/js/javascript-json-stringify.html) | 用于将 JavaScript 值转换为 JSON 字符串。       |
 
 更多 JSON 信息，你可以阅读我们的 [JSON 教程](https://www.runoob.com/json/json-tutorial.html)。
+
+## javascript:void(0) 含义
+
+我们经常会使用到 javascript:void(0) 这样的代码，那么在 JavaScript 中 javascript:void(0) 代表的是什么意思呢？
+
+javascript:void(0) 中最关键的是`void`关键字，`void`是 JavaScript 中非常重要的关键字，该操作符指定要计算一个表达式但是不返回值。
+
+```html
+<head>
+<script type="text/javascript">
+<!--
+void func()
+javascript:void func()
+
+或者
+
+void(func())
+javascript:void(func())
+//-->
+</script>
+</head>
+```
+
+下面的代码创建了一个超级链接，当用户点击以后不会发生任何事。
+```html
+<a href="javascript:void(0)">单击此处什么也不会发生</a>
+```
+
+当用户链接时，void(0) 计算为 0，但 Javascript 上没有任何效果。
+
+以下实例中，在用户点击链接后显示警告信息：
+```html
+<head>
+<script type="text/javascript">
+<!--
+//-->
+</script>
+</head>
+<body>
+<a href="javascript:void(alert('Warning!!!'))">点我!</a>
+</body>
+```
+
+void()仅仅是代表不返回任何值，但是括号内的表达式还是要运行，如
+
+以下实例中参数 a 将返回 undefined :
+```html
+<head>
+<script type="text/javascript">
+function getValue(){
+  var a,b,c;
+  a = void ( b = 5, c = 7 );
+  document.write('a = ' + a + ' b = ' + b +' c = ' + c );
+}
+</script>
+</head>
+```
+
+### href="#"与href="javascript:void(0)"的区别
+
+\# 包含了一个位置信息，默认的锚是 #top 也就是网页的上端。
+
+而javascript:void(0), 仅仅表示一个死链接。
+
+在页面很长的时候会使用 # 来定位页面的具体位置，格式为：# + id。
+
+如果你要定义一个死链接请使用 javascript:void(0) 。
+
+```html
+<a href="javascript:void(0);">点我没有反应的!</a>
+<a href="#pos">点我定位到指定位置!</a>
+<br>
+...
+<br>
+<p id="pos">尾部定位点</p>
+```
+
+## JavaScript 代码规范
+
+所有的 JavaScript 项目适用同一种规范。
+
+### JavaScript 代码规范
+
+代码规范通常包括以下几个方面:
+
+- 变量和函数的命名规则
+- 空格，缩进，注释的使用规则。
+- 其他常用规范……
+
+规范的代码可以更易于阅读与维护。
+
+代码规范一般在开发前规定，可以跟你的团队成员来协商设置。
+
+### 变量名
+
+变量名推荐使用驼峰法来命名(camelCase):
+
+```js
+firstName = "John";
+lastName = "Doe";
+
+price = 19.90;
+tax = 0.20;
+
+fllPrice = price + (price * tax);
+```
+
+### 空格与运算符
+
+通常运算符 ( = + - * / ) 前后需要添加空格:
+
+```js
+var x = y + z;
+var values = ["Volvo", "Saab", "Fiat"];
+```
+
+### 代码缩进
+
+通常使用 4 个空格符号来缩进代码块：
+
+```js
+function toCelsius(fahrenheit) {
+    return (5 / 9) * (fahrenheit - 32);
+}
+```
+
+*不推荐使用 TAB 键来缩进，因为不同编辑器 TAB 键的解析不一样。*
+//蛤？是这样的吗？我去。。。
+
+### 语句规则
+
+简单语句的通用规则:
+
+- 一条语句通常以分号作为结束符。
+
+```js
+var values = ["Volvo", "Saab", "Fiat"];
+
+var person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 50,
+    eyeColor: "blue"
+};
+```
+
+复杂语句的通用规则:
+
+- 将左花括号放在第一行的结尾。
+- 左花括号前添加一空格。
+- 将右花括号独立放在一行。
+- 不要以分号结束一个复杂的声明。
+
+函数:
+```js
+function toCelsius(fahrenheit) {
+    return (5 / 9) * (fahrenheit - 32);
+}
+```
+
+循环:
+```js
+for (i = 0; i < 5; i++) {
+    x += i;
+}
+```
+
+条件语句:
+```js
+if (time < 20) {
+    greeting = "Good day";
+} else {
+    greeting = "Good evening";
+}
+```
+
+### 对象规则
+
+对象定义的规则:
+
+- 将左花括号与类名放在同一行。
+- 冒号与属性值间有个空格。
+- 字符串使用双引号，数字不需要。
+- 最后一个属性-值对后面不要添加逗号。
+- 将右花括号独立放在一行，并以分号作为结束符号。
+
+实例:
+```js
+var person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 50,
+    eyeColor: "blue"
+};
+```
+
+短的对象代码可以直接写成一行:
+```js
+var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+```
+
+### 每行代码字符小于 80
+
+为了便于阅读每行字符建议小于数 80 个。
+
+如果一个 JavaScript 语句超过了 80 个字符，建议在 运算符或者逗号后换行。
+
+### 命名规则
+
+一般很多代码语言的命名规则都是类似的，例如:
+
+- 变量和函数为小驼峰法标识, 即除第一个单词之外，其他单词首字母大写（ lowerCamelCase）
+- 全局变量为大写 (UPPERCASE )
+- 常量 (如 PI) 为大写 (UPPERCASE )
+- 变量命名你是否使用这几种规则： hyp-hens, camelCase, 或 under_scores ?
+
+#### HTML 和 CSS 的横杠(-)字符:
+
+HTML5 属性可以以 data- (如：data-quantity, data-price) 作为前缀。
+
+CSS 使用 - 来连接属性名 (font-size)。
+
+*-通常在 JavaScript 中被认为是减法，所以不允许使用。*
+
+#### 下划线:
+
+很多程序员比较喜欢使用下划线(如：date_of_birth), 特别是在 SQL 数据库中。
+
+PHP 语言通常都使用下划线。
+
+#### 帕斯卡拼写法(PascalCase):
+
+帕斯卡拼写法(PascalCase) 在 C 语言中语言较多。
+
+#### 驼峰法：
+
+JavaScript 中通常推荐使用驼峰法，jQuery 及其他 JavaScript 库都使用驼峰法。
+
+*变量名不要以 $ 作为开始标记，会与很多 JavaScript 库冲突。*
+
+### HTML 载入外部 JavaScript 文件
+
+使用简洁的格式载入 JavaScript 文件 ( type 属性不是必须的):
+```html
+<script src="myscript.js">
+```
+
+### 使用 JavaScript 访问 HTML 元素
+
+一个糟糕的 HTML 格式可能会导致 JavaScript 执行错误。
+
+以下两个 JavaScript 语句会输出不同结果:
+```js
+var obj = getElementById("Demo")
+
+var obj = getElementById("demo")
+```
+
+HTML 与 JavaScript 尽量使用相同的命名规则。
+
+### 文件扩展名
+
+HTML 文件后缀可以是 .html (或 .htm)。
+
+CSS 文件后缀是 .css 。
+
+JavaScript 文件后缀是 .js 。
+
+### 使用小写文件名
+
+大多 Web 服务器 (Apache, Unix) 对大小写敏感： london.jpg 不能通过 London.jpg 访问。
+
+其他 Web 服务器 (Microsoft, IIS) 对大小写不敏感： london.jpg 可以通过 London.jpg 或 london.jpg 访问。
+
+你必须保持统一的风格，我们建议统一使用小写的文件名。
+
+# JS 函数
+
+## JavaScript 函数定义
+
+JavaScript 使用关键字 function 定义函数。
+
+函数可以通过声明定义，也可以是一个表达式。
+
+### 函数声明
+
+在之前的教程中，你已经了解了函数声明的语法 :
+```js
+function functionName(parameters) {
+  执行的代码
+}
+```
+
+函数声明后不会立即执行，会在我们需要的时候调用到。
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+```
+
+*分号是用来分隔可执行JavaScript语句。
+由于函数声明不是一个可执行语句，所以不以分号结束。*
+
+### 函数表达式
+
+JavaScript 函数可以通过一个表达式定义。
+
+函数表达式可以存储在变量中：
+```js
+var x = function (a, b) {return a * b};
+```
+
+在函数表达式存储在变量后，变量也可作为一个函数使用：
+```js
+var x = function (a, b) {return a * b};
+var z = x(4, 3);
+```
+
+以上函数实际上是一个 匿名函数 (函数没有名称)。
+
+函数存储在变量中，不需要函数名称，通常通过变量名来调用。
+
+*上述函数以分号结尾，因为它是一个执行语句。*
+
+### Function() 构造函数
+
+在以上实例中，我们了解到函数通过关键字 function 定义。
+
+函数同样可以通过内置的 JavaScript 函数构造器（Function()）定义。
+```js
+var myFunction = new Function("a", "b", "return a * b");
+
+var x = myFunction(4, 3);
+```
+
+实际上，你不必使用构造函数。上面实例可以写成：
+```js
+var myFunction = function (a, b) {return a * b};
+
+var x = myFunction(4, 3);
+```
+
+*在 JavaScript 中，很多时候，你需要避免使用 new 关键字。*
+
+### 函数提升（Hoisting）
+
+在之前的教程中我们已经了解了 "hoisting(提升)"。
+
+提升（Hoisting）是 JavaScript 默认将当前作用域提升到前面去的的行为。
+
+提升（Hoisting）应用在变量的声明与函数的声明。
+
+因此，函数可以在声明之前调用：
+```js
+myFunction(5);
+
+function myFunction(y) {
+    return y * y;
+}
+```
+
+使用表达式定义函数时无法提升。
+
+### 自调用函数
+
+函数表达式可以 "自调用"。
+
+自调用表达式会自动调用。
+
+如果表达式后面紧跟 () ，则会自动调用。
+
+不能自调用声明的函数。
+
+通过添加括号，来说明它是一个函数表达式：
+```js
+(function () {
+    var x = "Hello!!";      // 我将调用自己
+})();
+```
+
+对于函数自调用，必须通过把函数表达式外面添加括号(来说明它是一个函数表达式)再调用，否则会报错，如下实例:
+```js
+function () { document.write( "Hello! 我是自己调用的" );}();
+// 报错：Uncaught SyntaxError: Unexpected token (
+```
+
+正确写法：
+```js
+(function () { document.write( "Hello! 我是自己调用的" );})();
+```
+
+现在我们知道函数表达式后面紧跟 () 会自动调用，但是如果把函数表达式赋给一个变量则不需要添加括号也可以直接调用，下方的代码中，函数表达式的主体部分会执行，并且会返回一个字符串给 a:
+```js
+var a = function () {
+    document.write("Hello! 我是自己调用的" + "<br />");
+    return '返回的东西';
+}();        // 因为函数自调了，变量a不再指向一个函数，而是“返回的东西”这个字符串
+
+document.write(a);    //输出字符串
+```
+
+### 函数可作为一个值使用
+
+JavaScript 函数作为一个值使用：
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+
+var x = myFunction(4, 3);
+```
+
+JavaScript 函数可作为表达式使用：
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+
+var x = myFunction(4, 3) * 2;
+```
+
+### 函数是对象
+
+在 JavaScript 中使用 typeof 操作符判断函数类型将返回 "function" 。
+
+但是JavaScript 函数描述为一个对象更加准确。
+
+*Js里面万物皆是对象。*
+
+JavaScript 函数有 属性 和 方法。
+
+arguments.length 属性返回函数调用过程接收到的参数个数：
+```js
+function myFunction(a, b) {
+    return arguments.length;
+}
+```
+
+toString() 方法将函数作为一个字符串返回:
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+
+var txt = myFunction.toString();
+```
+
+函数定义作为对象的属性，称之为对象方法。
+函数如果用于创建新的对象，称之为对象的构造函数。
+
+### 箭头函数
+
+ES6 新增了箭头函数。
+
+箭头函数表达式的语法比普通函数表达式更简洁。
+
+```js
+(参数1, 参数2, …, 参数N) => { 函数声明 }
+
+(参数1, 参数2, …, 参数N) => 表达式(单一)
+// 相当于：(参数1, 参数2, …, 参数N) =>{ return 表达式; }
+```
+
+当只有一个参数时，圆括号是可选的：
+```js
+(单一参数) => {函数声明}
+单一参数 => {函数声明}
+```
+
+```js
+// ES5
+var x = function(x, y) {
+     return x * y;
+}
+ 
+// ES6
+const x = (x, y) => x * y;
+```
+
+有的箭头函数都没有自己的 this。 不适合定义一个 对象的方法。
+
+当我们使用箭头函数的时候，箭头函数会默认帮我们绑定外层 this 的值，所以在箭头函数中 this 的值和外层的 this 是一样的。
+
+箭头函数是不能提升的，所以需要在使用之前定义。
+
+使用 const 比使用 var 更安全，因为函数表达式始终是一个常量。
+
+如果函数部分只是一个语句，则可以省略 return 关键字和大括号 {}，这样做是一个比较好的习惯:
+```js
+const x = (x, y) => { return x * y };
+```
+*注意：IE11 及更早 IE 版本不支持箭头函数。*
+
+ES6 里自调用可以写成箭头函数形式。
+
+匿名自调用表达式:
+```js
+(()=>{})()
+```
+
+## JavaScript 函数参数
+
+JavaScript 函数对参数的值没有进行任何的检查。
+//这就显得离谱
+
+### 函数显式参数(Parameters)与隐式参数(Arguments)
+
+在先前的教程中，我们已经学习了函数的显式参数:
+```js
+functionName(parameter1, parameter2, parameter3) {
+    // 要执行的代码……
+}
+```
+
+函数显式参数在函数定义时列出。
+
+函数隐式参数在函数调用时传递给函数真正的值。
+
+### 参数规则
+
+JavaScript 函数定义显式参数时没有指定数据类型。
+
+JavaScript 函数对隐式参数没有进行类型检测。
+
+JavaScript 函数对隐式参数的个数没有进行检测。
+
+### 默认参数
+
+ES5 中如果函数在调用时未提供隐式参数，参数会默认设置为： undefined
+
+有时这是可以接受的，但是建议最好为参数设置一个默认值：
+```js
+//ES5
+function myFunction(x, y) {
+    if (y === undefined) {
+          y = 0;
+    } 
+}
+```
+
+或者，更简单的方式：
+```js
+//ES5
+function myFunction(x, y) {
+    y = y || 0;
+}
+```
+
+如果y已经定义 ， y || 返回 y, 因为 y 是 true, 否则返回 0, 因为 undefined 为 false。
+
+如果函数调用时设置了过多的参数，参数将无法被引用，因为无法找到对应的参数名。 只能使用 arguments 对象来调用。
+
+### ES6 函数可以自带参数
+
+ES6 支持函数带有默认参数，就判断 undefined 和 || 的操作：
+```js
+//ES6
+function myFunction(x, y = 10) {
+    // y is 10 if not passed or undefined
+    return x + y;
+}
+ 
+myFunction(0, 2) // 输出 2
+myFunction(5); // 输出 15, y 参数的默认值
+```
+
+### arguments 对象
+
+JavaScript 函数有个内置的对象 arguments 对象。
+
+argument 对象包含了函数调用的参数数组。
+
+通过这种方式你可以很方便的找到最大的一个参数的值：
+```js
+x = findMax(1, 123, 500, 115, 44, 88);
+ 
+function findMax() {
+    var i, max = arguments[0];
+    
+    if(arguments.length < 2) return max;
+ 
+    for (i = 0; i < arguments.length; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+    return max;
+}
+```
+
+或者创建一个函数用来统计所有数值的和：
+```js
+x = sumAll(1, 123, 500, 115, 44, 88);
+ 
+function sumAll() {
+    var i, sum = 0;
+    for (i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+```
+
+//这种写法就简单得离谱
+
+### 通过值传递参数
+
+在函数中调用的参数是函数的隐式参数。
+
+JavaScript 隐式参数通过值来传递：函数仅仅只是获取值。
+
+如果函数修改参数的值，不会修改显式参数的初始值（在函数外定义）。
+
+隐式参数的改变在函数外是不可见的。
+
+### 通过对象传递参数
+
+在JavaScript中，可以引用对象的值。
+
+因此我们在函数内部修改对象的属性就会修改其初始的值。
+
+修改对象属性可作用于函数外部（全局变量）。
+
+修改对象属性在函数外是可见的。
+
+## JavaScript 函数调用
+
+JavaScript 函数有 4 种调用方式。
+
+每种方式的不同在于 this 的初始化。
+
+### this 关键字
+
+一般而言，在Javascript中，this指向函数执行时的当前对象。
+
+*注意 this 是保留关键字，你不能修改 this 的值。*
+
+### 调用 JavaScript 函数
+
+在之前的章节中我们已经学会了如何创建函数。
+
+函数中的代码在函数被调用后执行。
+
+### 作为一个函数调用
+
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+myFunction(10, 2);           // myFunction(10, 2) 返回 20
+```
+
+以上函数不属于任何对象。但是在 JavaScript 中它始终是默认的全局对象。
+
+在 HTML 中默认的全局对象是 HTML 页面本身，所以函数是属于 HTML 页面。
+
+在浏览器中的页面对象是浏览器窗口(window 对象)。以上函数会自动变为 window 对象的函数。
+
+`myFunction()` 和 `window.myFunction()` 是一样的：
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+window.myFunction(10, 2);    // window.myFunction(10, 2) 返回 20
+```
+*这是调用 JavaScript 函数常用的方法， 但不是良好的编程习惯
+全局变量，方法或函数容易造成命名冲突的bug。*
+
+### 全局对象
+
+当函数没有被自身的对象调用时 this 的值就会变成全局对象。
+
+在 web 浏览器中全局对象是浏览器窗口（window 对象）。
+
+该实例返回 this 的值是 window 对象:
+```js
+function myFunction() {
+    return this;
+}
+myFunction();                // 返回 window 对象
+```
+
+*函数作为全局对象调用，会使 this 的值成为全局对象。
+使用 window 对象作为一个变量容易造成程序崩溃。*
+
+### 函数作为方法调用
+
+在 JavaScript 中你可以将函数定义为对象的方法。
+
+以下实例创建了一个对象 (myObject), 对象有两个属性 (firstName 和 lastName), 及一个方法 (fullName):
+```js
+var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+        return this.firstName + " " + this.lastName;
+    }
+}
+myObject.fullName();         // 返回 "John Doe"
+```
+
+fullName 方法是一个函数。函数属于对象。 myObject 是函数的所有者。
+
+this对象，拥有 JavaScript 代码。实例中 this 的值为 myObject 对象。
+
+测试以下！修改 fullName 方法并返回 this 值:
+```js
+var myObject = {
+    firstName:"John",
+    lastName: "Doe",
+    fullName: function () {
+        return this;
+    }
+}
+myObject.fullName();          // 返回 [object Object] (所有者对象)
+```
+
+*函数作为对象方法调用，会使得 this 的值成为对象本身。*
+
+### 使用构造函数调用函数
+
+如果函数调用前使用了 new 关键字, 则是调用了构造函数。
+
+这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：
+```js
+// 构造函数:
+function myFunction(arg1, arg2) {
+    this.firstName = arg1;
+    this.lastName  = arg2;
+}
+ 
+// This    creates a new object
+var x = new myFunction("John","Doe");
+x.firstName;                             // 返回 "John"
+```
+
+构造函数的调用会创建一个新的对象。新对象会继承构造函数的属性和方法。
+
+*构造函数中 this 关键字没有任何的值。
+this 的值在函数调用实例化对象(new object)时创建*
+
+### 作为函数方法调用函数
+
+在 JavaScript 中, 函数是对象。JavaScript 函数有它的属性和方法。
+
+call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身。
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+myObject = myFunction.call(myObject, 10, 2);     // 返回 20
+```
+
+```js
+function myFunction(a, b) {
+    return a * b;
+}
+myArray = [10, 2];
+myObject = myFunction.apply(myObject, myArray);  // 返回 20
+```
+
+两个方法都使用了对象本身作为第一个参数。 两者的区别在于第二个参数： apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而call则作为call的参数传入（从第二个参数开始）。
+
+在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。
+
+在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。
+
+*通过 call() 或 apply() 方法你可以设置 this 的值, 且作为已存在对象的新方法调用。*
+
+## JavaScript 闭包
+
+JavaScript 变量可以是局部变量或全局变量。
+
+私有变量可以用到闭包。
+
+### 全局变量
+
+函数可以访问由函数内部定义的变量，如：
+```js
+function myFunction() {
+    var a = 4;
+    return a * a;
+}
+```
+
+函数也可以访问函数外部定义的变量，如：
+```js
+var a = 4;
+function myFunction() {
+    return a * a;
+}
+```
+
+后面一个实例中， a 是一个 全局 变量。
+
+在web页面中全局变量属于 window 对象。
+
+全局变量可应用于页面上的所有脚本。
+
+在第一个实例中， a 是一个 局部 变量。
+
+局部变量只能用于定义它函数内部。对于其他的函数或脚本代码是不可用的。
+
+全局和局部变量即便名称相同，它们也是两个不同的变量。修改其中一个，不会影响另一个的值。
+
+*变量声明时如果不使用 var 关键字，那么它就是一个全局变量，即便它在函数内定义。*
+
+### 变量生命周期
+
+全局变量的作用域是全局性的，即在整个JavaScript程序中，全局变量处处都在。
+
+而在函数内部声明的变量，只在函数内部起作用。这些变量是局部变量，作用域是局部性的；函数的参数也是局部性的，只在函数内部起作用。
+
+### 计数器困境
+
+设想下如果你想统计一些数值，且该计数器在所有函数中都是可用的。
+
+你可以使用全局变量，函数设置计数器递增：
+```js
+var counter = 0;
+ 
+function add() {
+   return counter += 1;
+}
+ 
+add();
+add();
+add();
+ 
+// 计数器现在为 3
+```
+
+计数器数值在执行 add() 函数时发生变化。
+
+但问题来了，页面上的任何脚本都能改变计数器，即便没有调用 add() 函数。
+
+如果我在函数内声明计数器，如果没有调用函数将无法修改计数器的值：
+```js
+function add() {
+    var counter = 0;
+    return counter += 1;
+}
+ 
+add();
+add();
+add();
+ 
+// 本意是想输出 3, 但事与愿违，输出的都是 1 !
+```
+
+以上代码将无法正确输出，每次我调用 add() 函数，计数器都会设置为 1。
+
+**JavaScript 内嵌函数可以解决该问题。**
+
+### 所有函数都能访问全局变量。 
+
+实际上，在 JavaScript 中，所有函数都能访问它们上一层的作用域。
+
+JavaScript 支持嵌套函数。嵌套函数可以访问上一层的函数变量。
+
+该实例中，内嵌函数 plus() 可以访问父函数的 counter 变量：
+```js
+function add() {
+    var counter = 0;
+    function plus() {counter += 1;}
+    plus();    
+    return counter; 
+}
+```
+
+如果我们能在外部访问 plus() 函数，这样就能解决计数器的困境。
+
+我们同样需要确保 counter = 0 只执行一次。
+
+**我们需要闭包。**
+
+### JavaScript 闭包
+
+还记得函数自我调用吗？该函数会做什么？
+
+```js
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+ 
+add();
+add();
+add();
+ 
+// 计数器为 3
+```
+
+**实例解析**
+
+变量 add 指定了函数自我调用的返回字值。
+
+自我调用函数只执行一次。设置计数器为 0。并返回函数表达式。
+
+add变量可以作为一个函数使用。非常棒的部分是它可以访问函数上一层作用域的计数器。
+
+这个叫作 JavaScript 闭包。它使得函数拥有私有变量变成可能。
+
+计数器受匿名函数的作用域保护，只能通过 add 方法修改。
+
+*闭包是一种保护私有变量的机制，在函数执行时形成私有的作用域，保护里面的私有变量不受外界干扰。
+直观的说就是形成一个不销毁的栈环境。*
+
+#### tips
+
+我按我的理解总结下JavaScript闭包吧：
+
+闭包就是一个函数引用另一个函数的变量，因为变量被引用着所以不会被回收，因此可以用来封装一个私有变量。这是优点也是缺点，不必要的闭包只会增加内存消耗。
+
+或者说闭包就是子函数可以使用父函数的局部变量，还有父函数的参数。
+
+此技巧是js为其没有“访问修饰符”而创建出“私有属性”。
+
+以包含面向对象编程语言的基本特征“封装性”的很妙的处理方法。
+
+并不是 bug，人人都要会用。
 
 # JavaScript HTML DOM
 
